@@ -44,6 +44,7 @@ module.exports = {
         'func-names': 'off',
         'consistent-return': 'warn',
         'vars-on-top': 'warn',
+        'no-const-assign': 'error',
         'no-var': 'warn',
         camelcase: [
             'warn',
