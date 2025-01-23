@@ -8,7 +8,7 @@ module.exports = {
         es6: true,
         node: true,
     },
-    extends: ['eslint-config-airbnb-base', 'plugin:prettier/recommended'],
+    extends: ['eslint-config-airbnb-base', 'prettier'],
     parser: '@babel/eslint-parser',
     parserOptions: {
         ecmaFeatures: {
@@ -353,6 +353,18 @@ module.exports = {
                         ],
                     },
                 ],
+                '@typescript-eslint/no-explicit-any': 'warn', // только рекомендовать не использовать тип any
+                '@angular-eslint/sort-lifecycle-methods': ['error'], // требует определения хуков в порядке их выполнения
+                '@angular-eslint/component-max-inline-declarations': [ // определяет количество строк для inline-стилей, шаблона и анимаций
+                    'error',
+                    {
+                        template: 12,
+                        styles: 24,
+                        animations: 30
+                    }
+                ],
+                '@angular-eslint/no-async-lifecycle-method': ['error'], // запрещает использовать асинхронные куки
+                '@angular-eslint/consistent-component-styles': ['error', 'string'], // запрещает использовать массивы для стилей компоненты
             },
         },
         {
@@ -395,6 +407,22 @@ module.exports = {
                 '@html-eslint/no-multiple-empty-lines': 'error',
                 '@html-eslint/no-trailing-spaces': 'error',
                 '@html-eslint/quotes': 'error',
+                '@html-eslint/no-skip-heading-levels': 'error', // запрещено нарушать последовательность заголовков h1-h6
+                '@html-eslint/require-attrs': [ // требует наличия атрибута title у тега <a>
+                    'error',
+                    {
+                        tag: 'a',
+                        attr: 'title'
+                    }
+                ],
+                '@html-eslint/no-restricted-attrs': [ // запрещает использование data-* атрибутов у ссылок
+                    'error',
+                    {
+                        tagPatterns: ['^a$'],
+                        attrPatterns: ['^data-.*$'],
+                        message: 'data-* attributes is restricted.'
+                    }
+                ]
             },
         },
         {
