@@ -1,0 +1,13 @@
+.card {
+    max-width: 400px;
+}
+
+.card-price-container {
+    display: flex;
+    gap: 5px;
+}
+
+.card-rating-container {
+    display: flex;
+    gap: 5px;
+}
