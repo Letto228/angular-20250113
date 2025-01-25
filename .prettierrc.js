@@ -11,6 +11,7 @@ module.exports = {
     bracketSpacing: false,
     arrowParens: 'avoid',
     htmlWhitespaceSensitivity: 'ignore',
+    endOfLine: 'crlf',
     plugins: [require.resolve('prettier-plugin-organize-attributes')],
     attributeGroups: [
         '$ANGULAR_STRUCTURAL_DIRECTIVE',
