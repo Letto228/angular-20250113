@@ -1,0 +1,15 @@
+<mat-card appearance="outlined" class="app-card">
+    <mat-card-header>
+        <div mat-card-avatar [style]="styles"></div>
+        <mat-card-title>HDO7 WHOO TABLET</mat-card-title>
+        <mat-card-subtitle>Tablet</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ productImgUrl }}" alt="Photo of a HDO7 WHOO TABLET" />
+    <mat-card-content>
+        <p>Best tablet you can ever imagine!</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="onBuyBtnClick($event, {productId})">BUY</button>
+        <button mat-button>TO FAVOURITES</button>
+    </mat-card-actions>
+</mat-card>
