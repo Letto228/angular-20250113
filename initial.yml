@@ -1,0 +1,16 @@
+users: 
+  - name: testFirstNameLower
+    suites:
+      - suite: dataMart
+      - suite: userDim
+    dataset:
+      source: etlUnitTest 
+      table: users
+
+  - name: secondname
+    suites:
+      - suite: secondDataMart
+      - suite: secondUserDim
+    dataset:
+      source: secondEtlUnitTest 
+      table: secondUsers
