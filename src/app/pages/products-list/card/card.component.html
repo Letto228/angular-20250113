@@ -1,0 +1,23 @@
+@if (product(); as productSignal) {
+    @if (productSignal(); as product) {
+        <mat-card appearance="outlined" class="card">
+            <mat-card-content>
+                <div class="card-inner">
+                    <div class="card-image-wrapper">
+                        <img
+                            mat-card-image
+                            alt=""
+                            class="card-image"
+                            [src]="product.images[0].url"
+                            [width]="150"
+                            [height]="150"
+                        />
+                    </div>
+
+                    <span>Price: {{ product.price }}</span>
+                    <button mat-flat-button (click)="onBuy($event)">Buy</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    }
+}
