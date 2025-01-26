@@ -34,6 +34,6 @@ export class CardComponent {
 
     onBuy() {
         // eslint-disable-next-line no-console
-        console.log(`You by ${this.productName}`);
+        console.log(`You buy product - ${this.productName}`);
     }
 }
