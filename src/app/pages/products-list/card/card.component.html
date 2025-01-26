@@ -1,0 +1,21 @@
+<mat-card appearance="outlined" class="product-card">
+    <div class="product-image-carousel">
+        <button mat-icon-button disabled>
+            <mat-icon fontIcon="chevron_left"></mat-icon>
+        </button>
+
+        <img mat-card-image [src]="products[0].images[0].url" [alt]="products[0].name" />
+
+        <button mat-icon-button disabled>
+            <mat-icon fontIcon="chevron_right"></mat-icon>
+        </button>
+    </div>
+
+    <mat-card-content>
+        <p class="product-cost">{{ products[0].price }}$</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-flat-button (click)="onClickBuyBtn($event, products[0]._id)">Buy</button>
+    </mat-card-actions>
+</mat-card>

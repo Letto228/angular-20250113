@@ -1,0 +1,24 @@
+.product-card {
+  max-width: 280px;
+  padding: 12px;
+}
+
+.product-cost {
+  margin-top: 1em;
+}
+
+.product-image-carousel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+
+  img {
+    max-width: 176px;
+    border-radius: 8px;
+  }
+}
+
+mat-card-actions {
+  justify-content: right;
+}

@@ -8,7 +8,7 @@ module.exports = {
         es6: true,
         node: true,
     },
-    extends: ['eslint-config-airbnb-base', 'plugin:prettier/recommended'],
+    extends: ['eslint-config-airbnb-base', 'prettier'],
     parser: '@babel/eslint-parser',
     parserOptions: {
         ecmaFeatures: {
