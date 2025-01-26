@@ -1,0 +1,15 @@
+<mat-card appearance="outlined" class="product-card">
+    <mat-card-header>
+        <mat-card-title>{{ this.productName }}</mat-card-title>
+    </mat-card-header>
+    <img
+        mat-card-image
+        class="product-image"
+        [src]="this.productFirstImage.url"
+        [alt]="this.productName"
+    />
+    <mat-card-content>Price: {{ this.productPrice }}$</mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="onBuy(); $event.stopPropagation()">Buy</button>
+    </mat-card-actions>
+</mat-card>
