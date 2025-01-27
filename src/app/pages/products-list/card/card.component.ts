@@ -17,15 +17,6 @@ export class CardComponent {
     onProductBuy(event: Event) {
         event.stopPropagation();
 
-        if (!this.product) {
-            return;
-        }
-
-        // eslint-disable-next-line no-console
-        console.log('Buy product');
-    }
-
-    isStarActive(starIndex: number): boolean {
-        return !!this.product && this.product.rating >= starIndex;
+        console.log('buy');
     }
 }
