@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CardComponent} from './card/card.component';
 
 @Component({
@@ -7,5 +7,6 @@ import {CardComponent} from './card/card.component';
     imports: [CardComponent],
     templateUrl: './products-list.component.html',
     styleUrl: './products-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {}
