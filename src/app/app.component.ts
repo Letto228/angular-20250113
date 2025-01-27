@@ -10,4 +10,16 @@ import {RouterOutlet} from '@angular/router';
 })
 export class AppComponent {
     title = 'angular-20250113';
+
+    testArray = [
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+        'fdsfsfds',
+    ];
 }

@@ -11,18 +11,10 @@
         "build:prod": "ng build --configuration production",
         "prettier:fix": "prettier --write",
         "prettier:fix:all": "prettier --write .",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "prepare": "husky"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged --relative"
-        }
-    },
-    "lint-staged": {
-        "*.{js,ts}": [
-        "eslint --fix"
-        ]
-    },
+
     "private": true,
     "dependencies": {
         "@angular/animations": "^18.2.0",
