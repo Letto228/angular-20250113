@@ -1,4 +1,4 @@
-<mat-card appearance="outlined" class="card" (click)="onCardClick()">
+<mat-card appearance="outlined" class="card" (click)="onCardClick(product())">
     <img mat-card-image alt="Photo of a product" [src]="product().images[0].url" />
     <mat-card-header>
         <mat-card-subtitle>{{ product().name }}</mat-card-subtitle>

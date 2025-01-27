@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import {
     MatCard,
     MatCardActions,
@@ -24,6 +24,7 @@ import { Product } from '../../../shared/products/product.interface';
     ],
     templateUrl: './card.component.html',
     styleUrl: './card.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
     product = input.required<Product>();
@@ -33,7 +34,7 @@ export class CardComponent {
         console.info('onPurchaseClick', event);
     }
 
-    onCardClick() {
-        console.info(this.product());
+    onCardClick(product: Product) {
+        console.info(product);
     }
 }
