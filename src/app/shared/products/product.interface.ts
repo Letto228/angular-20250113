@@ -1,4 +1,4 @@
-import {ProductImage} from './product-image.interface';
+import { ProductImage } from './product-image.interface';
 
 export interface Product {
     // eslint-disable-next-line @typescript-eslint/naming-convention

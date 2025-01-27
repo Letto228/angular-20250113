@@ -8,7 +8,7 @@ module.exports = {
     semi: true,
     singleQuote: true,
     trailingComma: 'all',
-    bracketSpacing: false,
+    bracketSpacing: true,
     arrowParens: 'avoid',
     htmlWhitespaceSensitivity: 'ignore',
     plugins: [require.resolve('prettier-plugin-organize-attributes')],
@@ -28,11 +28,11 @@ module.exports = {
     overrides: [
         {
             files: ['*.html'],
-            options: {parser: 'html'},
+            options: { parser: 'html' },
         },
         {
             files: ['*.component.html', '*.template.html'],
-            options: {parser: 'angular'},
+            options: { parser: 'angular' },
         },
     ],
 };

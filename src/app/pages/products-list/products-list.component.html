@@ -1,1 +1,5 @@
-<p>Insert card component</p>
+@if (products.length) {
+    @for (product of products; track product._id) {
+        <app-card [product]="product" />
+    }
+}
