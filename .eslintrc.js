@@ -106,6 +106,7 @@ module.exports = {
                 'plugin:@angular-eslint/recommended',
                 'plugin:@angular-eslint/template/process-inline-templates',
                 'plugin:rxjs/recommended',
+                'airbnb-typescript/base',
                 'prettier',
             ],
             settings: {
@@ -267,6 +268,12 @@ module.exports = {
                 ],
                 '@typescript-eslint/ban-ts-comment': 'warn',
                 '@typescript-eslint/no-empty-function': 'warn',
+                '@typescript-eslint/unbound-method': [
+                    'error',
+                    {
+                        ignoreStatic: true,
+                    },
+                ],
                 '@typescript-eslint/no-use-before-define': [
                     'error',
                     {
@@ -356,9 +363,18 @@ module.exports = {
             },
         },
         {
-            files: ['*.spec.ts'],
+            files: ['src/**/*.spec.ts', 'src/**/*.d.ts'],
+            parserOptions: {
+                project: './tsconfig.spec.json',
+            },
+            // Правила для линтера
+            extends: ['plugin:jasmine/recommended'],
+            // Плагин для запуска правил
+            plugins: ['jasmine'],
+            env: {jasmine: true},
+            // Отключим правило 'no-unused-vars'
             rules: {
-                'unicorn/no-empty-file': 'off',
+                '@typescript-eslint/no-unused-vars': 'off',
             },
         },
         {
