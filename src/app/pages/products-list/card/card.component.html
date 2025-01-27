@@ -1,0 +1,37 @@
+<mat-card appearance="outlined" class="example-card">
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="example-header-image"
+            [style.background-image]="'url(' + product.images[0].url + ')'"
+        ></div>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle class="subtitle">Price: {{ product.price }} $</mat-card-subtitle>
+    </mat-card-header>
+    <div class="slider">
+        <button mat-icon-button disabled>
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <img
+            mat-card-image
+            alt="Photo of a Shiba Inu"
+            [style.max-height.px]="300"
+            [style.max-width.px]="400"
+            [src]="product.images[0].url"
+        />
+        <button mat-icon-button disabled>
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+    <mat-card-content>
+        <p>Comments: {{ product.feedbacksCount }}</p>
+        <p>
+            Rating:
+            <span *ngFor="let _ of [].constructor(getRating()[0])">⭐</span>
+            <span *ngFor="let _ of [].constructor(getRating()[1])">✰</span>
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="buy()">BUY</button>
+    </mat-card-actions>
+</mat-card>

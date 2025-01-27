@@ -1,0 +1,23 @@
+:host,
+:host .subtitle,
+:host button:not(.mat-mdc-button) {
+    color: yellow;
+}
+
+.example-card {
+    max-width: 400px;
+    margin: 15px 15px 15px 15px;
+}
+
+.example-header-image {
+    background-size: cover;
+}
+
+.subtitle {
+    text-align: right;
+}
+
+.slider button {
+    z-index: 1;
+    top: -140px;
+}
