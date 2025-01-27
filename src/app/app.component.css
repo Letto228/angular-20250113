@@ -1,8 +1,4 @@
-/* :host {
-    background-color: aqua;
+:host {
+    height: 100%;
     display: block;
 }
-
-h1 {
-    color: blue;
-} */
