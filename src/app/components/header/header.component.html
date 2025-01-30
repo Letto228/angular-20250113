@@ -1,21 +1,13 @@
 <mat-toolbar>
-    <!-- <button
-        mat-icon-button
-        aria-label="Example icon-button with menu icon"
-        class="example-icon"
-        (click)="menuClick.emit($event)"
-    > -->
     <button
         mat-icon-button
         aria-label="Example icon-button with menu icon"
         class="example-icon"
-        (click)="menuClick.emit(config())"
+        (click)="menuClick.emit()"
     >
         <mat-icon>menu</mat-icon>
     </button>
     <img alt="Logo" class="logo" [src]="config().shopIconSrc" />
-    <!-- <img alt="Logo" class="logo" [src]="config() && config().shopIconSrc" /> -->
-    <!-- <img alt="Logo" class="logo" [src]="config() ? config().shopIconSrc : undefined" /> -->
     <span>{{ config().title }}</span>
     <span class="example-spacer"></span>
     <button
