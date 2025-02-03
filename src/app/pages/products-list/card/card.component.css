@@ -1,0 +1,17 @@
+:host {
+    display: contents;
+}
+
+img {
+    width: auto;
+    max-height: 250px;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.card .card__price {
+    margin-top: 16px;
+    font-weight: bold;
+}
