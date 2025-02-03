@@ -11,18 +11,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidenavComponent {
-    // isSidenavOpened = false;
-    // readonly isSidenavOpened = signal(false);
-
-    // readonly isSidenavOpened = input(false);
-    // readonly isSidenavOpenedChange = output<boolean>();
-
     readonly isSidenavOpened = model(false);
 
     toggleSidenavOpened() {
-        // this.isSidenavOpened = !this.isSidenavOpened;
-        // this.isSidenavOpened.update(value => !value);
-        // this.isSidenavOpenedChange.emit(!this.isSidenavOpened());
         this.isSidenavOpened.set(!this.isSidenavOpened());
     }
 }

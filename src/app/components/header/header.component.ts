@@ -13,22 +13,7 @@ import {ApplicationConfig} from '../../shared/application-config/application-con
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-    // readonly config = input<ApplicationConfig | undefined, ApplicationConfig | undefined>(
-    //     undefined,
-    //     {
-    //         transform: (value: ApplicationConfig | undefined): ApplicationConfig | undefined => {
-    //             console.log(value);
-
-    //             return value;
-    //         },
-    //     },
-    // );
-    // @Input() config: ApplicationConfig | null = null;
-    // readonly config = input<ApplicationConfig | null>(null);
-    // readonly config: InputSignal<ApplicationConfig> = input.required();
     readonly config = input.required<ApplicationConfig>();
 
-    readonly menuClick = output<ApplicationConfig>();
-
-    // readonly imageSrc = 'favicon.ico';
+    readonly menuClick = output();
 }
