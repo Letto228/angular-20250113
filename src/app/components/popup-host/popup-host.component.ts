@@ -27,8 +27,6 @@ export class PopupHostComponent {
             const container = this.templateContainer();
             const template = this.template();
 
-            console.info('template: ', template);
-
             // если контейнер не найден - до свидания
             if (!container) {
                 return;
