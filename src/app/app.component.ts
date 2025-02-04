@@ -14,11 +14,5 @@ import {SidenavComponent} from './components/sidenav/sidenav.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-    // readonly isSidenavOpenedStore = signal(false);
-
     applicationConfig = applicationConfigMock;
-
-    // onMenuClick() {
-    //     this.isSidenavOpenedStore.update(isSidenavOpened => !isSidenavOpened);
-    // }
 }
