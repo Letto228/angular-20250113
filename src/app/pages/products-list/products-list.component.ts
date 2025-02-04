@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    TemplateRef,
+    viewChild,
+    ViewContainerRef,
+} from '@angular/core';
 import {CardComponent} from './card/card.component';
 import {productsMock} from '../../shared/products/products.mock';
 
@@ -11,5 +17,22 @@ import {productsMock} from '../../shared/products/products.mock';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent {
+    private readonly productViewport = viewChild.required('productTemplate', {
+        read: ViewContainerRef,
+    });
+
+    private readonly productTemplate = viewChild.required('productTemplate', {read: TemplateRef});
+
     readonly products = productsMock;
+
+    constructor() {
+        setTimeout(() => {
+            this.products.forEach(product => {
+                this.productViewport().createEmbeddedView(this.productTemplate(), {
+                    $implicit: product,
+                });
+                // this.productViewport().createComponent(CardComponent);
+            });
+        }, 1000);
+    }
 }
