@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import {HeaderComponent} from './components/header/header.component';
 import {ProductsListComponent} from './pages/products-list/products-list.component';
@@ -15,4 +15,25 @@ import {SidenavComponent} from './components/sidenav/sidenav.component';
 })
 export class AppComponent {
     applicationConfig = applicationConfigMock;
+
+    switchTemplate = signal(false);
+    closeTemplate = signal(true);
+
+    constructor() {
+        setTimeout(() => {
+            this.toggleTemplate();
+        }, 3000);
+        setTimeout(() => {
+            this.toggleTemplate();
+        }, 6000);
+        setTimeout(() => {
+            this.toggleTemplate();
+        }, 9000);
+    }
+
+    private toggleTemplate() {
+        this.switchTemplate.set(!this.switchTemplate);
+        // or
+        this.closeTemplate.set(!this.closeTemplate);
+    }
 }
