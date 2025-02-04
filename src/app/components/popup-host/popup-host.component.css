@@ -1,0 +1,17 @@
+.popup-content-container {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  background: #191c1c;
+  padding: 14px 24px;
+  box-shadow: 0px 0px 8px 1px #0d0f0f;
+  width: 50%;
+  height: auto;
+}
+
+.hidden {
+  display: none;
+}
