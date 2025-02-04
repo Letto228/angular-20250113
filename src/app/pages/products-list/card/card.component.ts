@@ -1,4 +1,4 @@
-import {Component, input, Signal} from '@angular/core';
+import {Component, input} from '@angular/core';
 import {MatCard, MatCardContent, MatCardImage} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {Product} from '../../../shared/products/product.interface';
@@ -11,7 +11,7 @@ import {Product} from '../../../shared/products/product.interface';
     styleUrl: './card.component.css',
 })
 export class CardComponent {
-    product = input<Signal<Product>>();
+    product = input.required<Product>();
 
     onBuy(event: MouseEvent) {
         event.stopPropagation();
