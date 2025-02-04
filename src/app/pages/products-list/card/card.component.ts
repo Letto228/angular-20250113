@@ -13,7 +13,7 @@ import type {Product} from '../../../shared/products/product.interface';
     styleUrl: './card.component.css',
 })
 export class CardComponent {
-    products: Product[] = productsMock;
+    product: Product = productsMock[0];
 
     onClickBuyBtn(event: MouseEvent, productId: Product['_id']) {
         event.stopPropagation(); // останавливаем всплытие события вверх - к карточке
