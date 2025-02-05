@@ -32,8 +32,8 @@ export class AppComponent {
     }
 
     private toggleTemplate() {
-        this.switchTemplate.set(!this.switchTemplate);
+        this.switchTemplate.set(!this.switchTemplate());
         // or
-        this.closeTemplate.set(!this.closeTemplate);
+        this.closeTemplate.set(!this.closeTemplate());
     }
 }
