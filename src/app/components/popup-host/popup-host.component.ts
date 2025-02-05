@@ -1,3 +1,4 @@
+import {NgClass} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -11,7 +12,7 @@ import {
 @Component({
     selector: 'app-popup-host',
     standalone: true,
-    imports: [],
+    imports: [NgClass],
     templateUrl: './popup-host.component.html',
     styleUrl: './popup-host.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
