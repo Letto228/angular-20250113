@@ -11,15 +11,14 @@ import {productsMock} from '../../../shared/products/products.mock';
     styleUrl: './card.component.css',
 })
 export class CardComponent {
-    readonly productImgUrl = productsMock[0].images[0].url;
-    readonly productId = 'testId98';
-    readonly styles: Partial<CSSStyleDeclaration> = {
-        backgroundImage: `url(${this.productImgUrl})`,
-        backgroundSize: 'cover',
+    readonly product = productsMock[0];
+    readonly productImage = productsMock[0].images[0];
+    readonly avatarStyles: Partial<CSSStyleDeclaration> = {
+        backgroundImage: `url(${this.productImage.url})`,
     };
 
-    onBuyBtnClick(event: Event, payload: {productId: string}) {
+    onBuyBtnClick(event: Event) {
         event.stopPropagation();
-        alert(`Product ${payload.productId} added to bucket!`);
+        alert(`Product ${this.product.name} added to bucket!`);
     }
 }

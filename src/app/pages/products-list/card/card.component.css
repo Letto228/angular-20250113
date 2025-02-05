@@ -2,6 +2,10 @@
     max-width: 400px;
 }
 
+.app-card-avatar {
+    backgroundSize: 'cover'
+}
+
 img {
     margin-bottom: 16px;
 }
