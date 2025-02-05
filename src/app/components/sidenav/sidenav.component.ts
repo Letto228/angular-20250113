@@ -12,8 +12,4 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 })
 export class SidenavComponent {
     readonly isSidenavOpened = model(false);
-
-    toggleSidenavOpened() {
-        this.isSidenavOpened.set(!this.isSidenavOpened());
-    }
 }

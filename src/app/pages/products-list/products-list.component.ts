@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {CardComponent} from './card/card.component';
+import {productsMock} from '../../shared/products/products.mock';
+import {Product} from '../../shared/products/product.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -9,4 +11,11 @@ import {CardComponent} from './card/card.component';
     styleUrl: './products-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent {}
+export class ProductsListComponent {
+    readonly product = productsMock[0];
+    cart = signal<Product[]>([]);
+
+    onAddProductToCart(product: Product) {
+        this.cart.update(prevCart => [...prevCart, product]);
+    }
+}
