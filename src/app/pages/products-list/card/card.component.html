@@ -1,0 +1,38 @@
+<mat-card appearance="outlined" class="example-card" (click)="buyPropagationCard()">
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="example-header-image"
+            [style.background-image]="'url(' + product.images[0].url + ')'"
+        ></div>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle class="subtitle">Price: {{ product.price }} $</mat-card-subtitle>
+    </mat-card-header>
+    <div class="slider">
+        <button mat-icon-button disabled>
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <img
+            mat-card-image
+            alt="Photo of a Shiba Inu"
+            class="card-image"
+            [src]="product.images[0].url"
+        />
+        <button mat-icon-button disabled>
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+    <mat-card-content>
+        <p>Comments: {{ product.feedbacksCount }}</p>
+        <p>
+            Rating:
+            <ng-container *ngFor="let value of ratingItems">
+                <ng-container *ngIf="value; else elseTemplate">⭐</ng-container>
+                <ng-container #elseTemplate>✰</ng-container>
+            </ng-container>
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="buy($event)">BUY</button>
+    </mat-card-actions>
+</mat-card>
