@@ -1,1 +1,4 @@
-<app-card></app-card>
+<app-card [productInput]="productList[0]" (productIdOutput)="addProductToCard($event)"></app-card>
+<app-card [productInput]="productList[1]" (productIdOutput)="addProductToCard($event)"></app-card>
+<app-card [productInput]="productList[2]" (productIdOutput)="addProductToCard($event)"></app-card>
+<app-card [productInput]="productList[3]" (productIdOutput)="addProductToCard($event)"></app-card>
