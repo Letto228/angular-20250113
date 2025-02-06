@@ -17,8 +17,8 @@ import type {TemplateRef} from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-    template = input<TemplateRef<Element> | null>();
-    templateContainer = viewChild<ViewContainerRef, ViewContainerRef>('templateContainer', {
+    template = input<TemplateRef<unknown> | null>(null);
+    templateContainer = viewChild.required('templateContainer', {
         read: ViewContainerRef,
     });
 
@@ -26,11 +26,6 @@ export class PopupHostComponent {
         effect(() => {
             const container = this.templateContainer();
             const template = this.template();
-
-            // если контейнер не найден - до свидания
-            if (!container) {
-                return;
-            }
 
             // очищаем view контейнера, если он не пустой
             if (container.length) {
