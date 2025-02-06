@@ -18,6 +18,12 @@ module.exports = {
     },
     plugins: ['file-progress', '@babel'],
     rules: {
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto',
+            },
+        ],
         'no-unused-expressions': [
             'error',
             {
