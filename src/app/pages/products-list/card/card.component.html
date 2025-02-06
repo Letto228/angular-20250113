@@ -1,4 +1,4 @@
-<mat-card appearance="outlined" class="example-card">
+<mat-card appearance="outlined" class="example-card" (click)="buyPropagationCard()">
     <mat-card-header>
         <div
             mat-card-avatar
@@ -15,8 +15,7 @@
         <img
             mat-card-image
             alt="Photo of a Shiba Inu"
-            [style.max-height.px]="300"
-            [style.max-width.px]="400"
+            class="card-image"
             [src]="product.images[0].url"
         />
         <button mat-icon-button disabled>
@@ -27,11 +26,13 @@
         <p>Comments: {{ product.feedbacksCount }}</p>
         <p>
             Rating:
-            <span *ngFor="let _ of [].constructor(getRating()[0])">⭐</span>
-            <span *ngFor="let _ of [].constructor(getRating()[1])">✰</span>
+            <ng-container *ngFor="let value of ratingItems">
+                <ng-container *ngIf="value; else elseTemplate">⭐</ng-container>
+                <ng-container #elseTemplate>✰</ng-container>
+            </ng-container>
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="buy()">BUY</button>
+        <button mat-button (click)="buy($event)">BUY</button>
     </mat-card-actions>
 </mat-card>

@@ -21,3 +21,8 @@
     z-index: 1;
     top: -140px;
 }
+
+.card-image {
+    max-height: 300px;
+    max-width: 400px;
+}
