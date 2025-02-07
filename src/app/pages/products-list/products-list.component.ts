@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CardComponent} from './card/card.component';
+import {productsMock} from '../../shared/products/products.mock';
+import {Product} from '../../shared/products/product.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -9,4 +11,11 @@ import {CardComponent} from './card/card.component';
     styleUrl: './products-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent {}
+export class ProductsListComponent {
+    protected readonly productsMock = productsMock;
+
+    butProductHandler(product: Product) {
+        // eslint-disable-next-line no-console
+        console.log('Buy product - ', product.name);
+    }
+}
