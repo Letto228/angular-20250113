@@ -1,7 +1,5 @@
-<div class="popup-host">
+<div class="popup-host" [style.display]="!!popupHostTemplate() ? 'unset' : 'none'">
     <ng-container #popupHostViewport></ng-container>
-    <!--<h2>First</h2>
-    <p>Is first template</p>-->
 </div>
 
 <!-- 1:55:05

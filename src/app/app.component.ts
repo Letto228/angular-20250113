@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
+import {NgIf} from '@angular/common';
 import {HeaderComponent} from './components/header/header.component';
 import {ProductsListComponent} from './pages/products-list/products-list.component';
 import {applicationConfigMock} from './shared/application-config/application-config.mock';
@@ -15,6 +16,7 @@ import {PopupHostComponent} from './components/popup-host/popup-host.component';
         SidenavComponent,
         MatListModule,
         PopupHostComponent,
+        NgIf,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
@@ -45,6 +47,6 @@ export class AppComponent {
         console.log(this.switchTemplate());
 
         // or
-        // this.closeTemplate.set(!this.closeTemplate());
+        this.closeTemplate.set(!this.closeTemplate());
     }
 }

@@ -21,11 +21,11 @@ export class PopupHostComponent {
         read: ViewContainerRef,
     });
 
-    readonly contentTemplate = input<TemplateRef<unknown>>(); // 1:48:36
+    readonly popupHostTemplate = input<TemplateRef<unknown> | null>(); // 1:48:36
 
     constructor() {
         effect(() => {
-            const contentTemplateLocal = this.contentTemplate();
+            const contentTemplateLocal = this.popupHostTemplate();
 
             // eslint-disable-next-line no-console
             console.log(contentTemplateLocal);
