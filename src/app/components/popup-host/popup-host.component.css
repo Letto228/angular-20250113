@@ -1,0 +1,24 @@
+:host {
+    position: fixed;
+    top: 20px;
+    right: 35px;
+    width: 350px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    z-index: 1000;
+}
+
+:host ::ng-deep p {
+    margin: 5px;
+    font-size: 14px;
+    color: #6c6c6c;
+}
+
+:host ::ng-deep h2 {
+    margin: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #6c6c6c;
+}
