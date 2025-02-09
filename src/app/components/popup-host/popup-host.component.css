@@ -1,0 +1,17 @@
+.modal {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: rgba(196, 196, 196, 0.5);
+}
+.modal__window {
+    position: relative;
+    top: 50%;
+}
+.modal_open {
+    display: block;
+}
