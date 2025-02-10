@@ -3,6 +3,13 @@
 <app-card [product]="products[2]"></app-card>
 <app-card [product]="products[3]"></app-card> -->
 
-<ng-template #productTemplate let-product>
-    <app-card class="card" [product]="product"></app-card>
+<!-- <ng-template [appMyNg]="products()" let-products> -->
+<ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
+    <!-- <h1>Cards</h1> -->
+    <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
+        <!-- <ng-template appCarousel [appCarouselOf]="products" let-product> -->
+        <app-card class="card" [product]="product"></app-card>
+    </ng-template>
 </ng-template>
+
+<ng-template #loader>Loader</ng-template>

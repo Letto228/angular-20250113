@@ -1,12 +1,16 @@
 <mat-drawer-container autosize class="example-container">
     <mat-drawer mode="side" class="example-sidenav">
         <div>
-            <ng-container #navigationViewport></ng-container>
+            <!-- <ng-container #navigationViewport></ng-container> -->
+            <!-- <ng-content select="mat-list"></ng-content> -->
+            <!-- <ng-content select="[role='list']"></ng-content> -->
+            <ng-content select="drawer-content"></ng-content>
         </div>
         <p>Auto-resizing sidenav</p>
     </mat-drawer>
 
     <div #divElement class="example-sidenav-content">
-        <ng-container #contentViewport></ng-container>
+        <!-- <ng-container #contentViewport></ng-container> -->
+        <ng-content></ng-content>
     </div>
 </mat-drawer-container>
