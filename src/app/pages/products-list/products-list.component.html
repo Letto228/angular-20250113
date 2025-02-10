@@ -1,7 +1,27 @@
 <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
-    <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-        <app-card class="card" [product]="product"></app-card>
-    </ng-template>
+    <!-- Раскомментрировать для ДЗ -->
+    <!-- <ng-template
+        appPagination
+        [appPaginationOf]="productsFromNgIf"
+        [appPaginationChunkSize]="4"
+        let-productsGroup
+        let-pageIndexes="pageIndexes"
+        let-activeIndex="index"
+        let-next="next"
+        let-back="back"
+        let-selectIndex="selectIndex"
+    > -->
+    <div>
+        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
+            <app-card class="card" [product]="product"></app-card>
+        </ng-template>
+    </div>
+
+    <div class="pagination">
+        <!-- Add pagination control -->
+    </div>
+
+    <!-- </ng-template> -->
 </ng-template>
 
 <ng-template #loader>Loader</ng-template>
