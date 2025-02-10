@@ -31,7 +31,6 @@ export class ProductsListComponent {
                 this.productViewport().createEmbeddedView(this.productTemplate(), {
                     $implicit: product,
                 });
-                // this.productViewport().createComponent(CardComponent);
             });
         }, 1000);
     }
