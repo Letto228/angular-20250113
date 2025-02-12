@@ -1,27 +1,45 @@
 <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
-    <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
         let-activeIndex="index"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
-    > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+        [appPaginationOf]="products"
+        [appPaginationChunkSize]="4"
+    >
+        <div class="list">
+            <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                <app-card class="card" [product]="product"></app-card>
+            </ng-template>
+        </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
+        <div class="pagination">
+            <button mat-icon-button [disabled]="activeIndex === 0" (click)="back()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
 
-    <!-- </ng-template> -->
+            <ng-template ngFor let-index [ngForOf]="pageIndexes">
+                <button
+                    mat-button
+                    [class]="{active: index === activeIndex}"
+                    (click)="selectIndex(index)"
+                >
+                    {{ index + 1 }}
+                </button>
+            </ng-template>
+
+            <button
+                mat-icon-button
+                [disabled]="activeIndex === pageIndexes.length - 1"
+                (click)="next()"
+            >
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </ng-template>
 </ng-template>
 
 <ng-template #loader>Loader</ng-template>
