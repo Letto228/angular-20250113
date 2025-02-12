@@ -21,40 +21,4 @@ export class MyPaginatorComponent {
     readonly pageNumbers = input.required<number[]>();
     readonly next = input.required<() => void>();
     readonly back = input.required<() => void>();
-
-    // readonly pageNumbers = computed<number[]>(() => {
-    //     const pageCount = this.getPageCount();
-
-    //     return Array.from({length: pageCount}, (_, i) => i + 1);
-    // });
-
-    // getPageCount() {
-    //     return Math.ceil((this.items()?.length ?? 0) / this.itemsPerPage());
-    // }
-
-    // select(index: number) {
-    //     const count: number = this.getPageCount();
-
-    //     if (index >= 0 && index < count) {
-    //         this.selectedIndex.set(index);
-    //     }
-    // }
-
-    // next() {
-    //     const nextIndex = this.selectedIndex() + 1;
-    //     const itemsLength = this.getPageCount();
-
-    //     const newIndex = nextIndex < itemsLength ? nextIndex : 0;
-
-    //     this.selectedIndex.set(newIndex);
-    // }
-
-    // back() {
-    //     const prevIndex = this.selectedIndex() - 1;
-    //     const itemsLength = this.getPageCount();
-
-    //     const newIndex = prevIndex >= 0 ? prevIndex : itemsLength - 1;
-
-    //     this.selectedIndex.set(newIndex);
-    // }
 }
