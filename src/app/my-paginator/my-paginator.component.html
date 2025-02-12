@@ -1,0 +1,9 @@
+<div>
+    <mat-icon class="mat-icon" (click)="back()()">chevron_left</mat-icon>
+    <ng-template ngFor let-item [ngForOf]="pageNumbers()">
+        <span [class]="index() + 1 == item ? 'highlight' : 'none'" (click)="select()(item - 1)">
+            {{ item }}
+        </span>
+    </ng-template>
+    <mat-icon class="mat-icon" (click)="next()()">chevron_right</mat-icon>
+</div>

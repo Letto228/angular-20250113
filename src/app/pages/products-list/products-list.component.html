@@ -1,27 +1,60 @@
 <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
-    <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+    <!-- Раскомментрировать для ДЗ
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
         let-activeIndex="index"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
+        [appPaginationOf]="productsFromNgIf"
+        [appPaginationChunkSize]="4"
     > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+    <ng-template
+        appPaginator
+        let-index="index"
+        let-indexItems="indexItems"
+        let-pageNumbers="pageNumbers"
+        let-back="back"
+        let-next="next"
+        let-select="select"
+        let-itemsPerPage="itemsPerPage"
+        [appPaginatorOf]="products"
+        [itemsPerPage]="4"
+    >
+        <div class="pagination">
+            <app-my-paginator
+                [items]="products"
+                [itemsPerPage]="itemsPerPage"
+                [index]="index"
+                [next]="next"
+                [back]="back"
+                [select]="select"
+                [pageNumbers]="pageNumbers"
+            ></app-my-paginator>
+        </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
+        <div>
+            <ng-template ngFor let-product [ngForOf]="indexItems" [ngForTrackBy]="trackBy">
+                <app-card class="card" [product]="product"></app-card>
+            </ng-template>
+        </div>
 
-    <!-- </ng-template> -->
+        <div class="pagination">
+            <app-my-paginator
+                [items]="products"
+                [itemsPerPage]="itemsPerPage"
+                [index]="index"
+                [next]="next"
+                [back]="back"
+                [select]="select"
+                [pageNumbers]="pageNumbers"
+            ></app-my-paginator>
+        </div>
+
+        <!-- </ng-template> -->
+    </ng-template>
 </ng-template>
 
 <ng-template #loader>Loader</ng-template>
