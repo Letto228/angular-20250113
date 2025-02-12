@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CardComponent} from './card/card.component';
+import {productsMock} from '../../shared/products/products.mock';
+import {Product} from '../../shared/products/product.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -9,4 +11,13 @@ import {CardComponent} from './card/card.component';
     styleUrl: './products-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsListComponent {}
+export class ProductsListComponent {
+    readonly products = productsMock;
+    readonly basket = new Map<Product['_id'], number>();
+
+    onBuyProduct($event: Product['_id']) {
+        const oldProductsCount = this.basket.get($event) ?? 0;
+
+        this.basket.set($event, oldProductsCount + 1);
+    }
+}
