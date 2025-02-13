@@ -54,29 +54,11 @@ export class PaginationOfDirective<Data> {
     }
 
     private next() {
-        if (this.pageIndexes().length < 2) {
-            return;
-        }
-
-        this.index.update(index => {
-            const pageIndexes = this.pageIndexes();
-            const indexPositon = pageIndexes.indexOf(index);
-
-            return indexPositon >= pageIndexes.length - 1 ? index : pageIndexes[indexPositon + 1];
-        });
+        this.selectIndex(this.index() + 1);
     }
 
     private back() {
-        if (this.pageIndexes().length < 2) {
-            return;
-        }
-
-        this.index.update(index => {
-            const pageIndexes = this.pageIndexes();
-            const indexPositon = pageIndexes.indexOf(index);
-
-            return indexPositon < 1 ? index : pageIndexes[indexPositon - 1];
-        });
+        this.selectIndex(this.index() - 1);
     }
 
     private selectIndex(index: number) {
