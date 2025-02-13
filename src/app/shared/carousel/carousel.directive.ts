@@ -25,10 +25,6 @@ export class CarouselDirective<Data> {
     readonly currentItem = computed(() => this.appCarouselOf()[this.currentIndex()]);
 
     constructor() {
-        // setInterval(() => {
-        //     this.currentIndex.update(value => value + 1);
-        // }, 2000);
-
         // Reset current index by appCarouselOf change
         this.listenCurrentItem();
     }
@@ -53,13 +49,6 @@ export class CarouselDirective<Data> {
     }
 
     private next() {
-        // const nextIndex = this.currentIndex() + 1;
-        // const itemsLength = this.appCarouselOf().length;
-
-        // const newIndex = nextIndex < itemsLength ? nextIndex : 0;
-
-        // this.currentIndex.set(newIndex);
-
         this.currentIndex.update(currentIndex => {
             const nextIndex = currentIndex + 1;
             const itemsLength = this.appCarouselOf().length;
