@@ -1,27 +1,46 @@
 <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
     <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
-        let-activeIndex="index"
+        let-activeIndex="activeIndex"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
-    > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+        [appPaginationOf]="products"
+        [appPaginationChunkSize]="3"
+    >
+        <div>
+            <div class="content">
+                <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                    <app-card class="card" [product]="product"></app-card>
+                </ng-template>
+            </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
-
-    <!-- </ng-template> -->
+            <div class="pagination">
+                <ul>
+                    <li>
+                        <a (click)="back()">&laquo;</a>
+                    </li>
+                    <ng-template ngFor let-index [ngForOf]="pageIndexes" [ngForTrackBy]="trackBy">
+                        <!-- eslint-disable-next-line @html-eslint/require-li-container -->
+                        <li>
+                            <a
+                                [class]="index === activeIndex ? 'selected' : ''"
+                                (click)="selectIndex(index)"
+                            >
+                                {{ index }}
+                            </a>
+                        </li>
+                    </ng-template>
+                    <li>
+                        <a (click)="next()">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ng-template>
 </ng-template>
 
 <ng-template #loader>Loader</ng-template>
