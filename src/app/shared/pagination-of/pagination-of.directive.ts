@@ -62,7 +62,7 @@ export class PaginationOfDirective<Data> {
     }
 
     private selectIndex(index: number) {
-        if (!this.pageIndexes().some(x => x === index)) {
+        if (!this.pageIndexes().includes(index)) {
             return;
         }
 
