@@ -20,8 +20,4 @@ export class ProductsListComponent {
             this.products.set(productsMock);
         }, 3000);
     }
-
-    trackById(_index: number, item: Product): Product['_id'] {
-        return item._id;
-    }
 }

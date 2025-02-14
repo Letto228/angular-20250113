@@ -11,7 +11,6 @@ import {Directive, signal} from '@angular/core';
 export class InsetShadowDirective {
     readonly boxShadow = signal('');
 
-    // onClick({target}: Event) {
     toggleShadow() {
         this.boxShadow.update(currentBoxShadow => (!currentBoxShadow ? 'inset 0 0 10px #fff' : ''));
     }
