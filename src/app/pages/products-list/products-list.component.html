@@ -1,9 +1,12 @@
 @if (products(); as products) {
-    @for (product of products; track product._id) {
-        <app-card class="card" [product]="product"></app-card>
-    } @empty {
-        Продуктов не найдено
-    }
+    <!-- <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()"> -->
+    <div class="scroll-container">
+        @for (product of products; track product._id) {
+            <app-card class="card" [product]="product"></app-card>
+        } @empty {
+            Продуктов не найдено
+        }
+    </div>
 } @else {
     Loader
 }
