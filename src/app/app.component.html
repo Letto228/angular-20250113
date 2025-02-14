@@ -7,7 +7,10 @@
             <mat-list-item appInsetShadow role="listitem">Item 3</mat-list-item>
         </mat-list>
     </ng-container>
-    <app-products-list></app-products-list>
+    <app-products-list
+        [products]="tmpProducts"
+        (scrollLoadNextData)="doProductsLoad($event)"
+    ></app-products-list>
 </app-sidenav>
 
 <!-- <app-popup-host></app-popup-host> -->
