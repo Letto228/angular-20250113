@@ -21,7 +21,7 @@ export class ProductsListComponent {
         }, 3000);
     }
 
-    trackBy(_index: number, item: Product): Product['_id'] {
+    trackById(_index: number, item: Product): Product['_id'] {
         return item._id;
     }
 }
