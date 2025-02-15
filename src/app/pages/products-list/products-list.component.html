@@ -1,27 +1,36 @@
 <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
     <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
-        let-activeIndex="index"
+        let-activeIndex="activeIndex"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
-    > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+        [appPaginationOf]="products"
+        [appPaginationChunkSize]="4"
+    >
+        <div>
+            <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                <app-card class="card" [product]="product"></app-card>
+            </ng-template>
+        </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
-
-    <!-- </ng-template> -->
+        <div class="pagination">
+            <span class="arrow" (click)="back()">&#60;</span>
+            <ng-template ngFor let-pageIndex [ngForOf]="pageIndexes" [ngForTrackBy]="trackBy">
+                <span
+                    class="pagination-elem"
+                    [class.active]="pageIndex === activeIndex"
+                    (click)="selectIndex(pageIndex)"
+                >
+                    {{ pageIndex }}
+                </span>
+            </ng-template>
+            <span class="arrow" (click)="next()">&#62;</span>
+        </div>
+    </ng-template>
 </ng-template>
 
 <ng-template #loader>Loader</ng-template>
