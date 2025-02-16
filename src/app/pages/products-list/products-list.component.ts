@@ -20,4 +20,7 @@ export class ProductsListComponent {
             this.products.set(productsMock);
         }, 3000);
     }
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    loadNextProducts() {}
 }
