@@ -1,56 +1,12 @@
-<!-- <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
-    <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackById" let-allProducts="ngForOf">
-        <app-card class="card" [product]="product"></app-card>
-    </ng-template>
-</ng-template> -->
-<!-- <ng-template let-products [ngIf]="products()" [ngIfElse]="loader"> -->
-<!-- <div></div> -->
-<!-- <ng-container *ngIf="products(); else: loader; let products"> -->
-<!-- <ng-template ngFor let-product [ngForOf]="products" let-allProducts="ngForOf" [ngForTrackBy]="trackById"> -->
-<!-- <app-card
-            *ngFor="
-                let product;
-                of: products as allProducts;
-                trackBy: trackById
-            "
-            class="card"
-            [product]="product"
-        ></app-card> -->
-<!-- <app-card
-            *ngFor="
-                let index = index;
-                of: products as allProducts;
-                trackBy: trackById
-            "
-            class="card"
-            [product]="allProducts[index]"
-        ></app-card> -->
-<!-- </ng-template> -->
-<!-- </ng-container> -->
-<!-- </ng-template> -->
-
-<!-- <ng-container *ngIf="products() as products; else: loader;">
-    <app-card
-        *ngFor="
-            let index = index;
-            of: products as allProducts;
-            trackBy: trackById
-        "
-        class="card"
-        [product]="allProducts[index]"
-    ></app-card>
-</ng-container> -->
-
 @if (products(); as products) {
-    <!-- $index / $count / $first / $last / $even / $odd -->
-    <!-- @for (product of products; track trackById($index, product); let currentIndex = $index) { -->
-    @for (product of products; track product._id) {
-        <app-card class="card" [product]="product"></app-card>
-    } @empty {
-        Продуктов не найдено
-    }
+    <!-- <div class="scroll-container"> -->
+    <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()">
+        @for (product of products; track product._id) {
+            <app-card class="card" [product]="product"></app-card>
+        } @empty {
+            Продуктов не найдено
+        }
+    </div>
 } @else {
     Loader
 }
-
-<!-- <ng-template #loader>Loader</ng-template> -->
