@@ -1,27 +1,43 @@
 <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
-    <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
-        let-activeIndex="index"
+        let-activeIndex="activeIndex"
+        let-hasNext="hasNext"
+        let-hasPrev="hasPrev"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
-    > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+        [appPaginationOf]="products"
+        [appPaginationChunkSize]="4"
+    >
+        <div class="cardsWrapper">
+            <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                <app-card class="card" [product]="product"></app-card>
+            </ng-template>
+        </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
+        <div class="pagination">
+            <button mat-icon-button [disabled]="!hasPrev" (click)="back()">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
 
-    <!-- </ng-template> -->
+            <ng-template ngFor let-pageIndex [ngForOf]="pageIndexes">
+                <button
+                    mat-icon-button
+                    [style.backgroundColor]="activeIndex === pageIndex && '#585858'"
+                    (click)="selectIndex(pageIndex)"
+                >
+                    {{ pageIndex + 1 }}
+                </button>
+            </ng-template>
+
+            <button mat-icon-button [disabled]="!hasNext" (click)="next()">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </ng-template>
 </ng-template>
 
 <ng-template #loader>Loader</ng-template>
