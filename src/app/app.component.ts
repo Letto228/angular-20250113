@@ -22,4 +22,13 @@ import {InsetShadowDirective} from './shared/inset-shadow/inset-shadow.directive
 })
 export class AppComponent {
     readonly applicationConfig = signal(applicationConfigMock);
+    // readonly applicationService = inject(ApplicationService);
+
+    // constructor() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // inject(testToken).set(true);
+    // inject(ApplicationService).flag.set(true);
+
+    // console.log(inject(aliasToken));
+    // }
 }
