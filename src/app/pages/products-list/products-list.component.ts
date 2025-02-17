@@ -15,18 +15,9 @@ import {ProductsStoreService} from '../../shared/products/products-store.service
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
 
-    // readonly products = signal<Product[] | null>(null);
     readonly products = this.productsStoreService.products;
 
     constructor() {
         this.productsStoreService.loadProducts();
-        // setTimeout(() => {
-        //     this.products.set(productsMock);
-        // }, 3000);
-    }
-
-    loadNextProducts(): void {
-        // eslint-disable-next-line no-console
-        console.log('Load next products');
     }
 }

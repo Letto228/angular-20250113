@@ -1,12 +1,6 @@
 <mat-card class="card">
     <mat-card-header>
         <mat-card-title>{{ product().name }}</mat-card-title>
-        <!-- <mat-card-subtitle>{{ product().price }} $</mat-card-subtitle> -->
-        <!-- <mat-card-subtitle>{{ getCurrency() }}</mat-card-subtitle> -->
-        <!-- <mat-card-subtitle>{{ getCurrency(product().price) }}</mat-card-subtitle> -->
-        <!-- <mat-card-subtitle>{{ (product().price | myCurrency : 'EUR') | json }}</mat-card-subtitle> -->
-        <!-- <mat-card-subtitle>{{ JSONPipe.transform(MyCurrencyPipe.transform(product().price, '$')) }}</mat-card-subtitle> -->
-
         <mat-card-subtitle>
             {{ product().price | currency: 'EUR' : 'symbol-narrow' : '1.0-0' }}
         </mat-card-subtitle>
@@ -37,16 +31,3 @@
         <button mat-button [disabled]="!product" (click)="onProductBuy($event)">Buy</button>
     </mat-card-actions>
 </mat-card>
-
-<!-- Bad -->
-<!-- <ng-template
-    appCarousel
-    let-img
-    let-next="next"
-    let-back="back"
-    [appCarouselOf]="product().images"
-> -->
-<!-- <ng-template>
-        ...
-    </ng-template> -->
-<!-- </ng-template> -->
