@@ -1,3 +1,9 @@
+<!-- Easy -->
+<!-- @if ((products() | productsFilter : name()); as products) { -->
+
+<!-- Hard -->
+<!-- @if ((products() | filterByProperty : propertyName : searchPropertyValue()); as products) { -->
+
 @if (products(); as products) {
     <div appScrollWithLoading class="scroll-container">
         @for (product of products; track product._id) {

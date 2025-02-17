@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CardComponent} from './card/card.component';
 import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
@@ -16,6 +16,13 @@ export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
 
     readonly products = this.productsStoreService.products;
+
+    // For easy
+    readonly name = signal('Мышь');
+
+    // For hard
+    readonly propertyName = 'feedbacksCount' as const; // keyof Product
+    readonly searchPropertyValue = signal(5);
 
     constructor() {
         this.productsStoreService.loadProducts();
