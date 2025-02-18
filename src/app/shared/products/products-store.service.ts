@@ -3,7 +3,7 @@ import {Product} from './product.interface';
 import {productsMock} from './products.mock';
 
 export class ProductsStoreService {
-    readonly products = signal<Product[] | null>(null);
+    readonly products = signal<Product[]>([]);
 
     loadProducts(): void {
         setTimeout(() => {
