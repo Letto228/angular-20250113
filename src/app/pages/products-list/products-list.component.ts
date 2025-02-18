@@ -3,11 +3,12 @@ import {CommonModule} from '@angular/common';
 import {CardComponent} from './card/card.component';
 import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
+import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-property.pipe';
 
 @Component({
     selector: 'app-products-list',
     standalone: true,
-    imports: [CardComponent, CommonModule, ScrollWithLoadingDirective],
+    imports: [CardComponent, CommonModule, ScrollWithLoadingDirective, FilterByPropertyPipe],
     templateUrl: './products-list.component.html',
     styleUrl: './products-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,11 +18,8 @@ export class ProductsListComponent {
 
     readonly products = this.productsStoreService.products;
 
-    // For easy
-    readonly name = signal('Мышь');
-
     // For hard
-    readonly propertyName = 'feedbacksCount' as const; // keyof Product
+    readonly propertyName = 'name' as const; // keyof Product
     readonly searchPropertyValue = signal(5);
 
     constructor() {
