@@ -17,8 +17,7 @@ export class ScrollWithLoadingDirective {
             return;
         }
 
-        const {target} = event;
-        const {scrollHeight, scrollTop, clientHeight} = target;
+        const {scrollHeight, scrollTop, clientHeight} = event.target;
 
         if (
             this.lastScrollTop < scrollTop &&
