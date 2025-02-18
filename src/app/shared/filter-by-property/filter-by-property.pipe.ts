@@ -15,7 +15,7 @@ export class FilterByPropertyPipe<T> implements PipeTransform {
             const value = x[propertyName];
 
             if (typeof value === 'string' && typeof searchPropertyValue === 'string') {
-                return value.includes(searchPropertyValue);
+                return value.toUpperCase().includes(searchPropertyValue.toUpperCase());
             }
 
             return value === searchPropertyValue;
