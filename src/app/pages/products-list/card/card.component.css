@@ -1,6 +1,5 @@
-:host,
-:host .subtitle,
-:host button:not(.mat-mdc-button) {
+.example-card,
+.example-card .subtitle {
     color: yellow;
 }
 

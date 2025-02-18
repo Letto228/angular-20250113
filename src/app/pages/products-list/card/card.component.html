@@ -28,7 +28,7 @@
             Rating:
             <ng-container *ngFor="let value of ratingItems">
                 <ng-container *ngIf="value; else elseTemplate">⭐</ng-container>
-                <ng-container #elseTemplate>✰</ng-container>
+                <ng-template #elseTemplate>✰</ng-template>
             </ng-container>
         </p>
     </mat-card-content>
