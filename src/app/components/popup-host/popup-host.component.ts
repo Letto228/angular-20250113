@@ -1,3 +1,4 @@
+import {CommonModule} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -6,15 +7,17 @@ import {
     TemplateRef,
     viewChild,
     ViewContainerRef,
+    ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
     selector: 'app-popup-host',
     standalone: true,
-    imports: [],
+    imports: [CommonModule],
     templateUrl: './popup-host.component.html',
     styleUrl: './popup-host.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class PopupHostComponent {
     private readonly contentViewport = viewChild.required('contentViewport', {

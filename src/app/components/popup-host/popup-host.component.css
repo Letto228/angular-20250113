@@ -1,4 +1,4 @@
-:host {
+.popup-content {
     position: fixed;
     top: 20px;
     right: 35px;
@@ -10,13 +10,13 @@
     z-index: 1000;
 }
 
-:host ::ng-deep p {
+.popup-content p {
     margin: 5px;
     font-size: 14px;
-    color: #6c6c6c;
+    color: #898686;
 }
 
-:host ::ng-deep h2 {
+.popup-content h2 {
     margin: 5px;
     font-size: 16px;
     font-weight: bold;
