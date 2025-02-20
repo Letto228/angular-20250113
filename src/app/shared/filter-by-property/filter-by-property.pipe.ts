@@ -16,7 +16,7 @@ export class FilterByPropertyPipe implements PipeTransform {
 
         return list.filter((item: I) =>
             typeof item[property] === 'string'
-                ? item[property].includes(value as string)
+                ? item[property].toLowerCase().includes((value as string).toLowerCase())
                 : item[property] === value,
         );
     }
