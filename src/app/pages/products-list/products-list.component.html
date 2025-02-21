@@ -2,9 +2,9 @@
 <!-- @if ((products() | productsFilter : name()); as products) { -->
 
 <!-- Hard -->
-@if (products() | filterByProperty: propertyName : searchPropertyValue(); as products) {
-    <!-- Закомментировать при выполнении ДЗ -->
-    <!-- @if (products(); as products) { -->
+<!-- @if (products() | filterByProperty: propertyName : searchPropertyValue(); as products) { -->
+<!-- Закомментировать при выполнении ДЗ -->
+@if (products(); as products) {
     <div appScrollWithLoading class="scroll-container">
         @for (product of products; track product._id) {
             <app-card class="card" [product]="product"></app-card>

@@ -1,13 +1,31 @@
-import {signal} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
+import {Subscription} from 'rxjs';
 import {Product} from './product.interface';
-import {productsMock} from './products.mock';
+import {ProductsApiService} from './products-api.service';
 
+@Injectable({providedIn: 'root'})
 export class ProductsStoreService {
+    private readonly productsApiService = inject(ProductsApiService);
+
+    private loadProductsSubscription: Subscription | null = null;
+
     readonly products = signal<Product[] | null>(null);
 
+    // constructor() {
+    //     console.log(inject(ElementRef));
+    // }
+
     loadProducts(): void {
-        setTimeout(() => {
-            this.products.set(productsMock);
-        }, 3000);
+        if (this.loadProductsSubscription) {
+            this.loadProductsSubscription.unsubscribe();
+        }
+
+        this.loadProductsSubscription = this.productsApiService
+            .getProducts$()
+            .subscribe(products => {
+                this.products.set(products);
+
+                this.loadProductsSubscription = null;
+            });
     }
 }

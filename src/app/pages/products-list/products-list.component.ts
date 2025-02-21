@@ -12,6 +12,12 @@ import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-pr
     templateUrl: './products-list.component.html',
     styleUrl: './products-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    // providers: [
+    //     {
+    //         provide: ProductsStoreService,
+    //         useClass: ProductsStoreService,
+    //     },
+    // ],
 })
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
