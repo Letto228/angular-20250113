@@ -1,41 +1,28 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    effect,
-    input,
-    TemplateRef,
-    viewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
+import {NgTemplateOutlet} from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import {PopupService} from '../../shared/popup/popup.service';
 
 @Component({
     selector: 'app-popup-host',
     standalone: true,
-    imports: [],
+    imports: [MatIconModule, MatButtonModule, NgTemplateOutlet],
     templateUrl: './popup-host.component.html',
     styleUrl: './popup-host.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class.empty]': '!getTemplateOptions()?.template',
+    },
 })
 export class PopupHostComponent {
-    readonly viewportViewContainer = viewChild.required('viewport', {
-        read: ViewContainerRef,
-    });
+    private readonly popupService = inject(PopupService);
 
-    readonly template = input<TemplateRef<unknown> | null>(null);
-
-    constructor() {
-        this.listenUpdatePopupContent();
+    getTemplateOptions(): ReturnType<PopupService['getPopupTemplateOptions']> {
+        return this.popupService.getPopupTemplateOptions();
     }
 
-    private listenUpdatePopupContent() {
-        effect(() => {
-            const template = this.template();
-
-            this.viewportViewContainer().clear();
-
-            if (template) {
-                this.viewportViewContainer().createEmbeddedView(template);
-            }
-        });
+    onPopupClose() {
+        this.popupService.closePopup();
     }
 }
