@@ -1,8 +1,16 @@
-import {ChangeDetectionStrategy, Component, input, output} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    input,
+    output,
+    TemplateRef,
+} from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {ApplicationConfig} from '../../shared/application-config/application-config.interface';
+import {PopupService} from '../../shared/popup/popup.service';
 
 @Component({
     selector: 'app-header',
@@ -13,7 +21,19 @@ import {ApplicationConfig} from '../../shared/application-config/application-con
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+    private readonly popupService = inject(PopupService);
     readonly config = input.required<ApplicationConfig>();
 
     readonly menuClick = output();
+
+    openPopup(template: TemplateRef<{$implicit: string}>) {
+        this.popupService.openPopup({
+            template,
+            context: {$implicit: this.config().title},
+        });
+    }
+
+    closePopup() {
+        this.popupService.closePopup();
+    }
 }

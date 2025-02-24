@@ -11,10 +11,6 @@ export class ProductsStoreService {
 
     readonly products = signal<Product[] | null>(null);
 
-    // constructor() {
-    //     console.log(inject(ElementRef));
-    // }
-
     loadProducts(): void {
         if (this.loadProductsSubscription) {
             this.loadProductsSubscription.unsubscribe();
