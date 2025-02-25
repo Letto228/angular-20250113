@@ -4,6 +4,8 @@
         let-productsGroup
         let-pageIndexes="pageIndexes"
         let-activeIndex="index"
+        let-isStartIndex="isStartIndex"
+        let-isLastIndex="isLastIndex"
         let-next="next"
         let-back="back"
         let-selectIndex="selectIndex"
@@ -17,7 +19,7 @@
         </div>
 
         <div class="pagination">
-            <button mat-icon-button [disabled]="activeIndex === 0" (click)="back()">
+            <button mat-icon-button [disabled]="isStartIndex" (click)="back()">
                 <mat-icon>chevron_left</mat-icon>
             </button>
 
@@ -31,11 +33,7 @@
                 </button>
             </ng-template>
 
-            <button
-                mat-icon-button
-                [disabled]="activeIndex === pageIndexes.length - 1"
-                (click)="next()"
-            >
+            <button mat-icon-button [disabled]="isLastIndex" (click)="next()">
                 <mat-icon>chevron_right</mat-icon>
             </button>
         </div>
