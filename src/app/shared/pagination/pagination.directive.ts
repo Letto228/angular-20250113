@@ -19,24 +19,35 @@ export class PaginationDirective<Data> {
     private readonly templateRef = inject<TemplateRef<PaginationContext<Data>>>(TemplateRef);
 
     private readonly activeIndex = signal(1);
-    readonly appPaginationOf = input.required<Data[]>();
-    readonly appPaginationChunkSize = input.required<number>();
+
+    readonly appPaginationOf = input<Data[]>([]);
+
+    readonly appPaginationChunkSize = input<number>(3);
+
+    readonly productsGroupStartIndex = computed<number>(
+        () => (this.activeIndex() - 1) * this.appPaginationChunkSize(),
+    );
+
+    readonly productsGroupEndIndex = computed<number>(
+        () => this.activeIndex() * this.appPaginationChunkSize(),
+    );
 
     readonly productsGroup = computed<Data[]>(() =>
-        this.appPaginationOf().slice(
-            (this.activeIndex() - 1) * this.appPaginationChunkSize(),
-            this.activeIndex() * this.appPaginationChunkSize(),
-        ),
+        this.appPaginationOf().slice(this.productsGroupStartIndex(), this.productsGroupEndIndex()),
     );
 
-    readonly pageIndexes = computed<number[]>(() =>
-        Array.from(
+    readonly pageIndexesCount = computed<number>(() => {
+        return this.appPaginationOf().length / this.appPaginationChunkSize();
+    });
+
+    readonly pageIndexes = computed<number[]>(() => {
+        return Array.from(
             {
-                length: Math.ceil(this.appPaginationOf().length / this.appPaginationChunkSize()),
+                length: Math.ceil(this.pageIndexesCount()),
             },
             (_, i) => i + 1,
-        ),
-    );
+        );
+    });
 
     constructor() {
         this.listenCurrentChunk();

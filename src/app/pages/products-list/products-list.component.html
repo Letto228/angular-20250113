@@ -21,21 +21,22 @@
             <div class="pagination">
                 <ul>
                     <li>
-                        <a (click)="back()">&laquo;</a>
+                        <mat-icon (click)="back()">chevron_left</mat-icon>
                     </li>
                     <ng-template ngFor let-index [ngForOf]="pageIndexes" [ngForTrackBy]="trackBy">
                         <!-- eslint-disable-next-line @html-eslint/require-li-container -->
                         <li>
-                            <a
-                                [class]="index === activeIndex ? 'selected' : ''"
+                            <button
+                                mat-icon-button
+                                [class.selected]="index === activeIndex"
                                 (click)="selectIndex(index)"
                             >
                                 {{ index }}
-                            </a>
+                            </button>
                         </li>
                     </ng-template>
                     <li>
-                        <a (click)="next()">&raquo;</a>
+                        <mat-icon (click)="next()">chevron_right</mat-icon>
                     </li>
                 </ul>
             </div>

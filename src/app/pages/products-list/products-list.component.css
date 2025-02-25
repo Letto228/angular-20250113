@@ -26,22 +26,27 @@
     padding: 10px;
     justify-content: center;
 }
+
 .pagination li {
     margin: 0 5px;
 }
-.pagination a {
+
+.pagination button,
+.pagination mat-icon {
     text-decoration: none;
     color: white;
-    background-color: grey;
+    background-color: rgb(33, 33, 33);
     padding: 8px 12px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-.pagination a:hover {
+
+.pagination button:hover,
+.pagination mat-icon:hover {
     background-color: darkgrey;
 }
 
-.pagination a.selected {
+.pagination button.selected {
     color: rgb(0, 0, 0);
     background-color: rgb(222, 222, 222);
 }
