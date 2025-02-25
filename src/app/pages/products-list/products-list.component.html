@@ -24,7 +24,7 @@
             <ng-template ngFor let-index [ngForOf]="pageIndexes">
                 <button
                     mat-button
-                    [class]="{active: index === activeIndex}"
+                    [class.active]="index === activeIndex"
                     (click)="selectIndex(index)"
                 >
                     {{ index + 1 }}

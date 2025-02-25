@@ -16,12 +16,17 @@ import type {PaginationTemplateContext} from './pagination-template-context';
 })
 export class PaginationDirective<Item> {
     private readonly viewContainerRef = inject(ViewContainerRef);
-    private readonly templateRef = inject(TemplateRef);
+    private readonly templateRef =
+        inject<TemplateRef<PaginationTemplateContext<Item>>>(TemplateRef);
 
     private readonly currentPageIndex = signal<number>(0);
 
     private readonly pagesCount = computed<number>(() =>
         Math.ceil(this.appPaginationOf().length / this.appPaginationChunkSize()),
+    );
+
+    private readonly pageIndexesArray = computed<number[]>(() =>
+        Array.from({length: this.pagesCount()}, (_, index) => index),
     );
 
     readonly appPaginationOf = input.required<Item[]>();
@@ -56,7 +61,9 @@ export class PaginationDirective<Item> {
         return {
             $implicit: this.getCurrentPageItemsGroup(),
             index: this.currentPageIndex(),
-            pageIndexes: this.getPageIndexesArray(),
+            pageIndexes: this.pageIndexesArray(),
+            isStartIndex: this.currentPageIndex() === 0,
+            isLastIndex: this.currentPageIndex() === this.pagesCount() - 1,
             back: () => this.back(),
             next: () => this.next(),
             selectIndex: (index: number) => this.selectIndex(index),
@@ -68,10 +75,6 @@ export class PaginationDirective<Item> {
         const endIndex = startIndex + this.appPaginationChunkSize();
 
         return this.appPaginationOf().slice(startIndex, endIndex);
-    }
-
-    getPageIndexesArray(): number[] {
-        return Array.from({length: this.pagesCount()}, (_, index) => index);
     }
 
     next(): void {
@@ -90,7 +93,7 @@ export class PaginationDirective<Item> {
 
     selectIndex(selectedIndex: number): void {
         // Если переданный индекс находится в диапазоне доступных индексов страниц - устанавливаем его
-        if (this.getPageIndexesArray().includes(selectedIndex)) {
+        if (this.pageIndexesArray().includes(selectedIndex)) {
             this.currentPageIndex.set(selectedIndex);
         }
     }
