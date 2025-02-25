@@ -4,12 +4,18 @@ import {Router, RouterLink} from '@angular/router';
 import {CardComponent} from './card/card.component';
 import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
-import {Product} from '../../shared/products/product.interface';
+import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-property.pipe';
 
 @Component({
     selector: 'app-products-list',
     standalone: true,
-    imports: [CardComponent, CommonModule, ScrollWithLoadingDirective, RouterLink],
+    imports: [
+        CardComponent,
+        CommonModule,
+        ScrollWithLoadingDirective,
+        RouterLink,
+        FilterByPropertyPipe,
+    ],
     templateUrl: './products-list.component.html',
     styleUrl: './products-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,10 +28,5 @@ export class ProductsListComponent {
 
     constructor() {
         this.productsStoreService.loadProducts();
-    }
-
-    navigateToProduct(id: Product['_id']) {
-        this.router.navigateByUrl(`/product/${id}`);
-        // this.router.navigate(['/', 'product', id]);
     }
 }
