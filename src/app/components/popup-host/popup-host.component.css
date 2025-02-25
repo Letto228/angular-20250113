@@ -20,3 +20,15 @@
     border-radius: 8px;
     background-color: #fff;
 }
+
+.popup-header {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -12px;
+}
+
+.close-btn-icon {
+    color: #878787;
+}

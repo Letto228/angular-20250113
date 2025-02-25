@@ -1,5 +1,11 @@
-<div class="popup-host" [class.empty]="!template()">
+<div class="popup-host" [class.empty]="!popupService.popupContent()">
     <div class="content-wrapper">
-        <ng-container #viewport></ng-container>
+        <div class="popup-header">
+            <button mat-icon-button (click)="popupService.closePopup()">
+                <mat-icon class="close-btn-icon">close</mat-icon>
+            </button>
+        </div>
+
+        <ng-container *ngTemplateOutlet="template(); context: context()"></ng-container>
     </div>
 </div>
