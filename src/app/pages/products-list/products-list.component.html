@@ -4,10 +4,10 @@
         appPagination
         let-productsGroup
         let-pageIndexes="pageIndexes"
-        let-activeIndex="activeIndex"
+        let-activePage="activePage"
         let-next="next"
         let-back="back"
-        let-selectIndex="selectIndex"
+        let-selectPage="selectPage"
         [appPaginationOf]="products"
         [appPaginationChunkSize]="4"
     >
@@ -22,8 +22,8 @@
             <ng-template ngFor let-pageIndex [ngForOf]="pageIndexes" [ngForTrackBy]="trackBy">
                 <span
                     class="pagination-elem"
-                    [class.active]="pageIndex === activeIndex"
-                    (click)="selectIndex(pageIndex)"
+                    [class.active]="pageIndex === activePage"
+                    (click)="selectPage(pageIndex)"
                 >
                     {{ pageIndex }}
                 </span>
