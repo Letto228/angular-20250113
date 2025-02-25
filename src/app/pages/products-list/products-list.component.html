@@ -2,7 +2,13 @@
 @if (products(); as products) {
     <div appScrollWithLoading class="scroll-container">
         @for (product of products; track product._id) {
-            <app-card class="card" [product]="product"></app-card>
+            <!-- <app-card class="card" [product]="product" (click)="navigateToProduct(product._id)"></app-card> -->
+            <!-- <app-card class="card" [product]="product" [routerLink]="'/product/' + product._id"></app-card> -->
+            <app-card
+                class="card"
+                [product]="product"
+                [routerLink]="['/', 'product', product._id]"
+            ></app-card>
         } @empty {
             Продуктов не найдено
         }

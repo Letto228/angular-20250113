@@ -8,8 +8,10 @@ export class ProductsStoreService {
     private readonly productsApiService = inject(ProductsApiService);
 
     private loadProductsSubscription: Subscription | null = null;
+    private loadCurrentProductSubscription: Subscription | null = null;
 
     readonly products = signal<Product[] | null>(null);
+    readonly currentProduct = signal<Product | null>(null);
 
     loadProducts(): void {
         if (this.loadProductsSubscription) {
@@ -22,6 +24,24 @@ export class ProductsStoreService {
                 this.products.set(products);
 
                 this.loadProductsSubscription = null;
+            });
+    }
+
+    loadProduct(id: Product['_id']) {
+        if (this.loadCurrentProductSubscription) {
+            this.loadCurrentProductSubscription.unsubscribe();
+        }
+
+        const productPreview = this.products()?.find(({_id}) => _id === id);
+
+        this.currentProduct.set(productPreview || null);
+
+        this.loadCurrentProductSubscription = this.productsApiService
+            .getProduct$(id)
+            .subscribe(product => {
+                this.currentProduct.set(product || null);
+
+                this.loadCurrentProductSubscription = null;
             });
     }
 }

@@ -18,4 +18,8 @@ export class ProductsApiService {
             .get<ProductsDto>(`products/suggestion`)
             .pipe(map(({data}: ProductsDto): Product[] => data.items));
     }
+
+    getProduct$(id: Product['_id']): Observable<Product | undefined> {
+        return this.httpClient.get<{data: Product}>(`products/${id}`).pipe(map(({data}) => data));
+    }
 }
