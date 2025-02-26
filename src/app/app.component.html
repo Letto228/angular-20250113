@@ -1,4 +1,7 @@
 <app-header [config]="applicationConfig" (menuClick)="onMenuClick()"></app-header>
-<app-sidenav [(isSidenavOpened)]="isSidenavOpenedStore"></app-sidenav>
 
-<!-- <app-products-list></app-products-list> -->
+<div class="app-layout-content">
+    <app-sidenav [(isSidenavOpened)]="isSidenavOpenedStore"></app-sidenav>
+
+    <app-products-list class="app-products-list"></app-products-list>
+</div>
