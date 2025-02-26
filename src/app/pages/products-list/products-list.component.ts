@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {CardComponent} from './card/card.component';
 import {productsMock} from '../../shared/products/products.mock';
-import {Product} from '../../shared/products/product.interface';
 
 @Component({
     selector: 'app-products-list',
@@ -13,9 +12,9 @@ import {Product} from '../../shared/products/product.interface';
 })
 export class ProductsListComponent {
     readonly product = productsMock[0];
-    cart = signal<Product[]>([]);
+    productsInCartIds = signal<string[]>([]);
 
-    onAddProductToCart(product: Product) {
-        this.cart.update(prevCart => [...prevCart, product]);
+    onAddProductToCart(productId: string) {
+        this.productsInCartIds.update(prevCart => [...prevCart, productId]);
     }
 }

@@ -13,23 +13,17 @@ import {Product} from '../../../shared/products/product.interface';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-    readonly product = input<Product>();
-    productAdded = output<Product>();
+    readonly product = input.required<Product>();
+    addProductToCart = output<string>();
 
     onProductBuy(event: Event) {
         event.stopPropagation();
 
-        const product = this.product();
-
-        if (!product) {
-            return;
-        }
-
-        this.productAdded.emit(product);
+        this.addProductToCart.emit(this.product()._id);
     }
 
     isStarActive(starIndex: number): boolean {
-        const productRating = this.product()?.rating;
+        const productRating = this.product().rating;
 
         return productRating ? productRating >= starIndex : false;
     }
