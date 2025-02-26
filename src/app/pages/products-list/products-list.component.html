@@ -26,7 +26,7 @@
             <ng-template ngFor let-pageIndex [ngForOf]="pageIndexes">
                 <button
                     mat-icon-button
-                    [style.backgroundColor]="activeIndex === pageIndex && '#585858'"
+                    [class.paginationPageButton--active]="activeIndex === pageIndex"
                     (click)="selectIndex(pageIndex)"
                 >
                     {{ pageIndex + 1 }}

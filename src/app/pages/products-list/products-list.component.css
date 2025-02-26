@@ -30,3 +30,7 @@
     bottom: -10px;
     z-index: 1;
 }
+
+.paginationPageButton--active {
+    background-color: #585858;
+}

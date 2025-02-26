@@ -22,26 +22,17 @@ export class PaginationDirective<Data> {
     readonly appPaginationChunkSize = input(4);
 
     readonly activeIndex = signal(0);
-    readonly productsGroup = computed(() =>
-        [...this.appPaginationOf()].splice(
-            this.activeIndex() * this.appPaginationChunkSize(),
-            this.appPaginationChunkSize(),
-        ),
-    );
+    readonly productsGroup = computed(() => {
+        const startIndex = this.activeIndex() * this.appPaginationChunkSize();
+
+        return this.appPaginationOf().slice(startIndex, startIndex + this.appPaginationChunkSize());
+    });
 
     readonly totalPages = computed(() =>
-        Math.abs(this.appPaginationOf().length / this.appPaginationChunkSize()),
+        Math.ceil(this.appPaginationOf().length / this.appPaginationChunkSize()),
     );
 
-    readonly pageIndexes = computed(() => {
-        const indexes = [];
-
-        for (let i = 0; i < this.totalPages(); i++) {
-            indexes.push(i);
-        }
-
-        return indexes;
-    });
+    readonly pageIndexes = computed(() => Array.from(new Array(this.totalPages()).keys()));
 
     readonly hasNext = computed(() => {
         return this.activeIndex() < this.pageIndexes().length - 1;
