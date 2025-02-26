@@ -1,8 +1,16 @@
-import {ChangeDetectionStrategy, Component, input, output, TemplateRef} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    input,
+    output,
+    TemplateRef,
+} from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {ApplicationConfig} from '../../shared/application-config/application-config.interface';
+import {PopupService} from '../../shared/popup/popup.service';
 
 @Component({
     selector: 'app-header',
@@ -17,11 +25,13 @@ export class HeaderComponent {
 
     readonly menuClick = output();
 
-    openPopup(_template: TemplateRef<{$implicit: string}>) {
-        // this.popupService.openPopup(template, context);
+    readonly popupService = inject(PopupService);
+
+    openPopup(template: TemplateRef<{$implicit: string}>) {
+        this.popupService.openPopup({template, context: {$implicit: 'testTitle'}});
     }
 
     closePopup() {
-        // this.popupService.closePopup();
+        this.popupService.closePopup();
     }
 }

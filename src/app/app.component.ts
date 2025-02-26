@@ -5,6 +5,7 @@ import {ProductsListComponent} from './pages/products-list/products-list.compone
 import {applicationConfigMock} from './shared/application-config/application-config.mock';
 import {SidenavComponent} from './components/sidenav/sidenav.component';
 import {InsetShadowDirective} from './shared/inset-shadow/inset-shadow.directive';
+import {PopupHostComponent} from './components/popup-host/popup-host.component';
 
 @Component({
     selector: 'app-root',
@@ -15,6 +16,7 @@ import {InsetShadowDirective} from './shared/inset-shadow/inset-shadow.directive
         SidenavComponent,
         MatListModule,
         InsetShadowDirective,
+        PopupHostComponent,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
