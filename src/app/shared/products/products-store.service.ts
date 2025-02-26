@@ -2,6 +2,7 @@ import {inject, Injectable, signal} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Product} from './product.interface';
 import {ProductsApiService} from './products-api.service';
+import {Category} from '../categories/category.interface';
 
 @Injectable({providedIn: 'root'})
 export class ProductsStoreService {
@@ -13,13 +14,13 @@ export class ProductsStoreService {
     readonly products = signal<Product[] | null>(null);
     readonly currentProduct = signal<Product | null>(null);
 
-    loadProducts(): void {
+    loadProducts(id: Category['_id'] | null = null): void {
         if (this.loadProductsSubscription) {
             this.loadProductsSubscription.unsubscribe();
         }
 
         this.loadProductsSubscription = this.productsApiService
-            .getProducts$()
+            .getProducts$(id)
             .subscribe(products => {
                 this.products.set(products);
 
