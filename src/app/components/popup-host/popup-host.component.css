@@ -20,3 +20,8 @@
     border-radius: 8px;
     background-color: #fff;
 }
+.close-button {
+    float: right;
+    top: -24px;
+    right: -24px;
+}

@@ -1,5 +1,12 @@
-<div class="popup-host" [class.empty]="!template()">
+<div class="popup-host" [class.empty]="!templateData()">
     <div class="content-wrapper">
-        <ng-container #viewport></ng-container>
+        <button mat-icon-button class="close-button" (click)="onClose()">
+            <mat-icon class="close-icon">close</mat-icon>
+        </button>
+        @if (templateData(); as templateData) {
+            <ng-container
+                *ngTemplateOutlet="templateData.template; context: templateData.context"
+            ></ng-container>
+        }
     </div>
 </div>
