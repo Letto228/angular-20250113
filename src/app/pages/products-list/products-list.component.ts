@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
+import {Router, RouterLink, ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
 import {CardComponent} from './card/card.component';
 import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
@@ -23,10 +24,17 @@ import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-pr
 export class ProductsListComponent {
     private readonly productsStoreService = inject(ProductsStoreService);
     private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
 
     readonly products = this.productsStoreService.products;
 
     constructor() {
-        this.productsStoreService.loadProducts();
+        this.subscribeToSubCategoryIdChanges();
+    }
+
+    subscribeToSubCategoryIdChanges(): void {
+        this.activatedRoute.queryParamMap
+            .pipe(map(queryParams => queryParams.get('subCategoryId')))
+            .subscribe(subCategoryId => this.productsStoreService.loadProducts(subCategoryId));
     }
 }

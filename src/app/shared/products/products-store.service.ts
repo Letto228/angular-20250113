@@ -13,13 +13,13 @@ export class ProductsStoreService {
     readonly products = signal<Product[] | null>(null);
     readonly currentProduct = signal<Product | null>(null);
 
-    loadProducts(): void {
+    loadProducts(subCategoryId: string | null): void {
         if (this.loadProductsSubscription) {
             this.loadProductsSubscription.unsubscribe();
         }
 
         this.loadProductsSubscription = this.productsApiService
-            .getProducts$()
+            .getProducts$(subCategoryId)
             .subscribe(products => {
                 this.products.set(products);
 
