@@ -1,13 +1,5 @@
 <app-header [config]="applicationConfig()" (menuClick)="sidenav.toggleSidenavOpened()"></app-header>
 <app-sidenav #sidenav>
-    <ng-container ngProjectAs="drawer-content">
-        <mat-list role="list">
-            <mat-list-item appInsetShadow role="listitem">Item 1</mat-list-item>
-            <mat-list-item appInsetShadow role="listitem">Item 2</mat-list-item>
-            <mat-list-item appInsetShadow role="listitem">Item 3</mat-list-item>
-        </mat-list>
-    </ng-container>
-
     <router-outlet></router-outlet>
 </app-sidenav>
 

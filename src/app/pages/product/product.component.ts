@@ -4,6 +4,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {filter, map} from 'rxjs';
 import {CarouselDirective} from '../../shared/carousel/carousel.directive';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
@@ -32,45 +33,18 @@ export class ProductComponent {
     readonly product = this.productsStoreService.currentProduct;
 
     constructor() {
-        // this.productsStoreService.loadProduct('96-planset-dexp-ursus-s290-32-gb-3g-cernyj');
-        // console.log(inject(ActivatedRoute).snapshot);
+        this.listenProductIdForLoad();
+    }
 
-        // this.activatedRoute.paramMap
-        //     // .pipe(takeUntilDestroyed())
-        //     .subscribe(paramsMap => {
-        //         const id = paramsMap.get('id');
-
-        //         if (!id) {
-        //             return;
-        //         }
-
-        //         this.productsStoreService.loadProduct(id);
-        //     });
+    private listenProductIdForLoad() {
         this.activatedRoute.paramMap
             .pipe(
                 map(paramsMap => paramsMap.get('id')),
-                // filter(id => Boolean(id)),
                 filter(Boolean),
-                // takeUntilDestroyed(),
+                takeUntilDestroyed(),
             )
             .subscribe(id => {
                 this.productsStoreService.loadProduct(id);
             });
-    }
-
-    navigateTo(segment: 'type' | 'description'): void {
-        // const urlTree = this.router.createUrlTree(['./', segment], {
-        //     relativeTo: this.activatedRoute,
-        // });
-
-        // console.log(urlTree, urlTree.toString());
-
-        // this.router.navigateByUrl(`./${segment}`);
-        // this.router.navigateByUrl(urlTree);
-        // this.router.navigateByUrl(urlTree.toString());
-
-        this.router.navigate(['./', segment], {
-            relativeTo: this.activatedRoute,
-        });
     }
 }

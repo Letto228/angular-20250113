@@ -1,9 +1,21 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
+
+.shop-icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 4px;
+}
 
 .logo {
-    margin: 0 10px;
-    width: 30px;
-    height: 30px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.logo__icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 4px;
 }

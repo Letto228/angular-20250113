@@ -2,6 +2,8 @@ import {map, Observable} from 'rxjs';
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from './product.interface';
+import {SubCategory} from '../categories/sub-category.interface';
+import {getParamsFromObject} from '../params/get-params-from-object';
 
 type ProductsDto = {
     data: {
@@ -13,9 +15,9 @@ type ProductsDto = {
 export class ProductsApiService {
     private readonly httpClient = inject(HttpClient);
 
-    getProducts$(): Observable<Product[]> {
+    getProducts$(subCategoryId?: SubCategory['_id'] | null): Observable<Product[]> {
         return this.httpClient
-            .get<ProductsDto>(`products/suggestion`)
+            .get<ProductsDto>(`products`, {params: getParamsFromObject({subCat: subCategoryId})})
             .pipe(map(({data}: ProductsDto): Product[] => data.items));
     }
 
