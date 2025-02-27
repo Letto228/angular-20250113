@@ -1,5 +1,13 @@
-<div class="popup-host" [class.empty]="!template()">
+<div class="popup-host" [class.empty]="!popupService.getPopup()">
     <div class="content-wrapper">
-        <ng-container #viewport></ng-container>
+        <button mat-icon-button class="close-button" (click)="popupService.closePopup()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <ng-container
+            *ngTemplateOutlet="
+                popupService.getPopup();
+                context: {$implicit: popupService.getContext()}
+            "
+        ></ng-container>
     </div>
 </div>
