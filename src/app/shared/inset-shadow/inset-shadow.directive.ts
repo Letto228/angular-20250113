@@ -7,6 +7,8 @@ import {Directive, signal} from '@angular/core';
         '(click)': 'toggleShadow()',
         '[style.boxShadow]': 'boxShadow()',
     },
+    exportAs: 'appInsetShadow',
+    // exportAs: 'ngModel',
 })
 export class InsetShadowDirective {
     readonly boxShadow = signal('');

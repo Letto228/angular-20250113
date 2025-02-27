@@ -8,8 +8,8 @@ import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scrol
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-property.pipe';
 import {BrandsService} from '../../shared/brands/brands.service';
-import {FilterComponent} from './filter/reactive/filter.component';
-// import {FilterComponent} from './filter/template-driven/filter.component';
+// import {FilterComponent} from './filter/reactive/filter.component';
+import {FilterComponent} from './filter/template-driven/filter.component';
 
 @Component({
     selector: 'app-products-list',

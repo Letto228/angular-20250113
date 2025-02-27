@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {ChangeDetectionStrategy, Component, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input, signal} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -23,4 +23,16 @@ import {CounterInputComponent} from '../../../../shared/counter-input/counter-in
 })
 export class FilterComponent {
     brands = input<string[] | null>(null);
+
+    readonly counter = signal(10);
+
+    onChange(newValue: number) {
+        // eslint-disable-next-line no-console
+        console.log(newValue);
+    }
+
+    onLog(value: unknown) {
+        // eslint-disable-next-line no-console
+        console.log(value);
+    }
 }

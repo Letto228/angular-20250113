@@ -11,7 +11,7 @@ export class BrandsApiService {
 
     getBrands$(subCategoryId?: string | null): Observable<string[]> {
         return this.httpClient
-            .get<{data: string[]}>('/brands', {
+            .get<{data: string[]}>('brands', {
                 params: getParamsFromObject({subCat: subCategoryId}),
             })
             .pipe(map(({data}) => data));
