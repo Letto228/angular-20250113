@@ -1,3 +1,5 @@
+<app-filter [brands]="getBrands()"></app-filter>
+
 @if (products() | filterByProperty: 'name' : ''; as products) {
     <div appScrollWithLoading class="scroll-container">
         @for (product of products; track product._id) {

@@ -7,6 +7,9 @@ import {CardComponent} from './card/card.component';
 import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
 import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-property.pipe';
+import {BrandsService} from '../../shared/brands/brands.service';
+import {FilterComponent} from './filter/reactive/filter.component';
+// import {FilterComponent} from './filter/template-driven/filter.component';
 
 @Component({
     selector: 'app-products-list',
@@ -17,6 +20,7 @@ import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-pr
         ScrollWithLoadingDirective,
         RouterLink,
         FilterByPropertyPipe,
+        FilterComponent,
     ],
     templateUrl: './products-list.component.html',
     styleUrl: './products-list.component.css',
@@ -25,11 +29,16 @@ import {FilterByPropertyPipe} from '../../shared/filter-by-property/filter-by-pr
 export class ProductsListComponent {
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly productsStoreService = inject(ProductsStoreService);
+    private readonly brandsService = inject(BrandsService);
 
     readonly products = this.productsStoreService.products;
 
     constructor() {
         this.listenSubCategoryIdForLoad();
+    }
+
+    getBrands(): ReturnType<BrandsService['getBrands']> {
+        return this.brandsService.getBrands();
     }
 
     private listenSubCategoryIdForLoad() {
@@ -40,6 +49,7 @@ export class ProductsListComponent {
             )
             .subscribe(id => {
                 this.productsStoreService.loadProducts(id);
+                this.brandsService.loadBrands(id);
             });
     }
 }
