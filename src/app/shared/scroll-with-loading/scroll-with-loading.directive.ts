@@ -12,17 +12,18 @@ export class ScrollWithLoadingDirective {
     private scrollTopLastValue = 0;
     readonly loadNextData = output();
 
-    private handleScroll(event: Event) {
-        if (event.target instanceof HTMLElement) {
-            const {scrollHeight, scrollTop, clientHeight} = event.target;
-
-            const scrollBottom = scrollHeight - scrollTop - clientHeight;
-
-            if (scrollBottom <= this.borderOffset && this.scrollTopLastValue < scrollTop) {
-                this.loadNextData.emit();
-            }
-
-            this.scrollTopLastValue = scrollTop;
+    private handleScroll({target}: Event) {
+        if (!(target instanceof HTMLElement)) {
+            return;
         }
+
+        const {scrollHeight, scrollTop, clientHeight} = target;
+        const scrollBottom = scrollHeight - scrollTop - clientHeight;
+
+        if (scrollBottom <= this.borderOffset && this.scrollTopLastValue < scrollTop) {
+            this.loadNextData.emit();
+        }
+
+        this.scrollTopLastValue = scrollTop;
     }
 }
