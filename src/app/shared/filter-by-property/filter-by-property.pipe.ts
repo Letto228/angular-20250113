@@ -5,17 +5,17 @@ import {Pipe, PipeTransform} from '@angular/core';
     standalone: true,
 })
 export class FilterByPropertyPipe implements PipeTransform {
-    transform<T, D extends keyof T>(data: T[] | null, key: D, searchValue: unknown): T[] | null {
-        if (!data || searchValue === undefined || searchValue === null) {
+    transform<T, D extends keyof T>(data: T[] | null, key: D, value: T[D]): T[] | null {
+        if (!data || value === undefined || value === null) {
             return null;
         }
 
-        if (typeof searchValue === 'string') {
+        if (typeof value === 'string') {
             return data.filter(product =>
-                String(product[key]).toLowerCase().includes(searchValue.toString().toLowerCase()),
+                String(product[key]).toLowerCase().includes(value.toLowerCase()),
             );
         }
 
-        return data.filter(product => product[key] === searchValue);
+        return data.filter(product => product[key] === value);
     }
 }
