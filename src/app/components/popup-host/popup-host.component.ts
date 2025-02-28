@@ -1,41 +1,24 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    effect,
-    input,
-    TemplateRef,
-    viewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {NgTemplateOutlet} from '@angular/common';
+import {MatIconButton} from '@angular/material/button';
+import {PopupService} from '../../shared/popup/popup.service';
 
 @Component({
     selector: 'app-popup-host',
     standalone: true,
-    imports: [],
+    imports: [MatIconButton, NgTemplateOutlet],
     templateUrl: './popup-host.component.html',
     styleUrl: './popup-host.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-    readonly viewportViewContainer = viewChild.required('viewport', {
-        read: ViewContainerRef,
-    });
+    private readonly popupService = inject(PopupService);
 
-    readonly template = input<TemplateRef<unknown> | null>(null);
-
-    constructor() {
-        this.listenUpdatePopupContent();
+    getPopupData() {
+        return this.popupService.getPopupData();
     }
 
-    private listenUpdatePopupContent() {
-        effect(() => {
-            const template = this.template();
-
-            this.viewportViewContainer().clear();
-
-            if (template) {
-                this.viewportViewContainer().createEmbeddedView(template);
-            }
-        });
+    close() {
+        this.popupService.closePopup();
     }
 }
