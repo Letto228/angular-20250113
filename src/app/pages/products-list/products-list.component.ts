@@ -40,16 +40,19 @@ export class ProductsListComponent {
         }
 
         this.products.update(prevProducts => {
-            const currentChunkNum = this.chunkNum();
+            const productsChunkStartIndex = this.chunkNum() * this.chunkSize;
+
+            // eslint-disable-next-line no-console
+            console.log(`Loaded chunk ${this.chunkNum()}`);
 
             this.chunkNum.update(prev => prev + 1);
 
-            // eslint-disable-next-line no-console
-            console.log(`Loaded chunk ${currentChunkNum}`);
-
             return [
                 ...(prevProducts || []),
-                ...[...productsMock].splice(currentChunkNum * this.chunkSize, this.chunkSize),
+                ...productsMock.slice(
+                    productsChunkStartIndex,
+                    productsChunkStartIndex + this.chunkSize,
+                ),
             ];
         });
     }
