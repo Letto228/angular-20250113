@@ -1,8 +1,8 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     effect,
-    ElementRef,
     inject,
     input,
     TemplateRef,
@@ -13,20 +13,24 @@ import {
 @Component({
     selector: 'app-popup-host',
     standalone: true,
-    imports: [],
     templateUrl: './popup-host.component.html',
     styleUrl: './popup-host.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class.opened]': 'isOpened',
+    },
 })
 export class PopupHostComponent {
-    private readonly containerRef = viewChild('containerRef', {read: ViewContainerRef});
-    private readonly elementRef = inject(ElementRef);
+    private readonly containerRef = viewChild.required('containerRef', {read: ViewContainerRef});
+    private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
     readonly template = input.required<TemplateRef<unknown> | null>();
 
+    isOpened = true;
+
     constructor() {
         effect(() => {
-            this.containerRef()?.clear();
+            this.containerRef().clear();
 
             const template = this.template();
 
@@ -36,7 +40,7 @@ export class PopupHostComponent {
                 return;
             }
 
-            this.containerRef()?.createEmbeddedView(template);
+            this.containerRef().createEmbeddedView(template);
             this.open();
         });
     }
@@ -46,10 +50,12 @@ export class PopupHostComponent {
     }
 
     close() {
-        this.elementRef.nativeElement.style.display = 'none';
+        this.isOpened = false;
+        this.changeDetectorRef.markForCheck();
     }
 
     open() {
-        this.elementRef.nativeElement.style.display = 'flex';
+        this.isOpened = true;
+        this.changeDetectorRef.markForCheck();
     }
 }
