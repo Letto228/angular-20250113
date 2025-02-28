@@ -1,18 +1,8 @@
 import {Routes} from '@angular/router';
+import {productListRoutes} from './pages/products-list/products-list.routes';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: '/products-list',
-        pathMatch: 'full',
-    },
-    {
-        path: 'products-list',
-        loadComponent: () =>
-            import('./pages/products-list/products-list.component').then(
-                m => m.ProductsListComponent,
-            ),
-    },
+    ...productListRoutes,
     {
         path: 'product',
         loadChildren: () => import('./pages/product/product.routes').then(m => m.routes),
