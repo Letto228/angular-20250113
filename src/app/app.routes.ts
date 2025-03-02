@@ -1,4 +1,5 @@
 import {Routes} from '@angular/router';
+import {productsListMatcher} from './shared/route-matchers/products-list-matcher';
 
 export const routes: Routes = [
     {
@@ -7,7 +8,7 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'products-list',
+        matcher: productsListMatcher,
         loadComponent: () =>
             import('./pages/products-list/products-list.component').then(
                 m => m.ProductsListComponent,

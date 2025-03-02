@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router, RouterLink, ActivatedRoute} from '@angular/router';
-import {map} from 'rxjs/operators';
 import {CardComponent} from './card/card.component';
 import {ScrollWithLoadingDirective} from '../../shared/scroll-with-loading/scroll-with-loading.directive';
 import {ProductsStoreService} from '../../shared/products/products-store.service';
@@ -29,12 +28,14 @@ export class ProductsListComponent {
     readonly products = this.productsStoreService.products;
 
     constructor() {
-        this.subscribeToSubCategoryIdChanges();
+        this.listenForProductsCategoryChanges();
     }
 
-    subscribeToSubCategoryIdChanges(): void {
-        this.activatedRoute.queryParamMap
-            .pipe(map(queryParams => queryParams.get('subCategoryId')))
-            .subscribe(subCategoryId => this.productsStoreService.loadProducts(subCategoryId));
+    listenForProductsCategoryChanges(): void {
+        this.activatedRoute.paramMap.subscribe(params => {
+            const categoryId = params.get('categoryId');
+
+            this.productsStoreService.loadProducts(categoryId);
+        });
     }
 }
