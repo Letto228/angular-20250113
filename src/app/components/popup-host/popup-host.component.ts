@@ -22,12 +22,9 @@ export class PopupHostComponent {
         return !this.template();
     }
 
-    private readonly contentViewPort = viewChild.required<string, ViewContainerRef>(
-        'contentViewPort',
-        {
-            read: ViewContainerRef,
-        },
-    );
+    private readonly contentViewPort = viewChild.required('contentViewPort', {
+        read: ViewContainerRef,
+    });
 
     template = input<TemplateRef<unknown> | null>();
 
