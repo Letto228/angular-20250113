@@ -1,6 +1,5 @@
 @if (products(); as products) {
-    <!-- <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()"> -->
-    <div class="scroll-container">
+    <div appScrollWithLoading class="scroll-container" (loadNextData)="loadNextProducts()">
         @for (product of products; track product._id) {
             <app-card class="card" [product]="product"></app-card>
         } @empty {
