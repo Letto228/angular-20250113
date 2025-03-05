@@ -1,8 +1,12 @@
 <form #ngForm="ngForm" class="filter" (ngSubmit)="onLog(ngForm.value)">
     <mat-form-field appearance="fill">
         <mat-label>Search</mat-label>
-        <input matInput ngModel name="search" />
+        <input matInput ngModel name="search" appIsStringValidator required [minlength]="3" />
     </mat-form-field>
+
+    {{ ngForm.control.get('search')?.dirty }}
+    <!-- {{ngForm.control.get('search')?.valid}} -->
+    {{ ngForm.control.get('search')?.errors | json }}
 
     <div *ngIf="brands(); else loaderTemplateRef" ngModelGroup="brands" class="checkbox-container">
         <mat-checkbox *ngFor="let brand of brands()" [ngModel]="false" [name]="brand">
@@ -26,12 +30,12 @@
 
     <!-- <button type="button" (click)="ngForm.valueChanges">Submit</button> -->
     <!-- <button type="button" (click)="onLog(ngForm.value)">Submit</button> -->
-    <button type="submit">Submit</button>
-    <input type="submit" />
+    <!-- <button type="submit">Submit</button>
+    <input type="submit" /> -->
 </form>
 
 <!-- {{ngModelInst.value}} -->
-{{ counter() }}
+<!-- {{ counter() }} -->
 
 <ng-template #loaderTemplateRef>
     <mat-spinner diameter="60" class="loader"></mat-spinner>

@@ -1,10 +1,25 @@
 import {CommonModule} from '@angular/common';
 import {ChangeDetectionStrategy, Component, effect, input} from '@angular/core';
-import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {
+    AbstractControl,
+    FormArray,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+    ValidationErrors,
+    ValidatorFn,
+    Validators,
+} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {CounterInputComponent} from '../../../../shared/counter-input/counter-input.component';
+
+const isStringValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    // console.log('isStringValidator call');
+
+    return Number(control.value) ? {isString: 'Input value convert to number'} : null;
+};
 
 @Component({
     selector: 'app-filter',
@@ -25,10 +40,12 @@ export class FilterComponent {
     brands = input<string[] | null>(null);
 
     readonly counterForm = new FormControl();
-    readonly textControl = new FormControl('Test');
+    readonly textControl = new FormControl('Test', {validators: [isStringValidator]});
 
     readonly form = new FormGroup({
-        search: new FormControl(''),
+        search: new FormControl('', {
+            validators: [isStringValidator, Validators.required, Validators.minLength(3)],
+        }),
         brands: new FormArray<FormControl<boolean>>([]),
         priceRange: new FormGroup({
             min: new FormControl(0),
@@ -57,7 +74,7 @@ export class FilterComponent {
         //     .subscribe(console.log);
 
         // eslint-disable-next-line no-console
-        this.form.get('search')?.valueChanges.subscribe(console.log);
+        // this.form.get('search')?.valueChanges.subscribe(console.log);
     }
 
     listenBrandsChange() {

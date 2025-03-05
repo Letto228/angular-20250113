@@ -5,6 +5,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FormsModule} from '@angular/forms';
 import {CounterInputComponent} from '../../../../shared/counter-input/counter-input.component';
+import {IsStringValidatorDirective} from './validators/is-string-validator.directive';
 
 @Component({
     selector: 'app-filter',
@@ -19,6 +20,7 @@ import {CounterInputComponent} from '../../../../shared/counter-input/counter-in
         MatProgressSpinnerModule,
         CounterInputComponent,
         FormsModule,
+        IsStringValidatorDirective,
     ],
 })
 export class FilterComponent {
@@ -26,13 +28,13 @@ export class FilterComponent {
 
     readonly counter = signal(10);
 
-    onChange(newValue: number) {
+    onChange(_newValue: number) {
         // eslint-disable-next-line no-console
-        console.log(newValue);
+        // console.log(newValue);
     }
 
-    onLog(value: unknown) {
+    onLog(_value: unknown) {
         // eslint-disable-next-line no-console
-        console.log(value);
+        // console.log(value);
     }
 }

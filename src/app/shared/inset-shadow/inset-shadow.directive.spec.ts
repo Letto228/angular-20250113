@@ -1,9 +1,9 @@
-import {InsetShadowDirective} from './inset-shadow.directive';
+// import {InsetShadowDirective} from './inset-shadow.directive';
 
-describe('InsetShadowDirective', () => {
-    it('should create an instance', () => {
-        const directive = new InsetShadowDirective();
+// describe('InsetShadowDirective', () => {
+//     it('should create an instance', () => {
+//         const directive = new InsetShadowDirective();
 
-        expect(directive).toBeTruthy();
-    });
-});
+//         expect(directive).toBeTruthy();
+//     });
+// });

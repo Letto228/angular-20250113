@@ -42,7 +42,7 @@ export class CounterInputComponent implements ControlValueAccessor {
 
     writeValue(counter: number): void {
         // eslint-disable-next-line no-console
-        console.log(`New value: ${counter}`);
+        // console.log(`New value: ${counter}`);
         this.counter.set(counter);
     }
 
@@ -62,7 +62,7 @@ export class CounterInputComponent implements ControlValueAccessor {
         this.counter.update(counter => counter - this.step());
 
         // eslint-disable-next-line no-console
-        console.log(`onChangeCallback: ${this.counter()}`);
+        // console.log(`onChangeCallback: ${this.counter()}`);
 
         this.onChangeCallback(this.counter());
         this.onTouchedCallback();
@@ -72,7 +72,7 @@ export class CounterInputComponent implements ControlValueAccessor {
         this.counter.update(counter => counter + this.step());
 
         // eslint-disable-next-line no-console
-        console.log(`onChangeCallback: ${this.counter()}`);
+        // console.log(`onChangeCallback: ${this.counter()}`);
 
         this.onChangeCallback(this.counter());
         this.onTouchedCallback();
