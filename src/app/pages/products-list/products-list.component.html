@@ -1,27 +1,82 @@
-<ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
-    <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-template
+<!-- <ng-template let-products [ngIf]="products()" [ngIfElse]="loader">
+    <ng-template
         appPagination
-        [appPaginationOf]="productsFromNgIf"
-        [appPaginationChunkSize]="4"
         let-productsGroup
         let-pageIndexes="pageIndexes"
-        let-activeIndex="index"
-        let-next="next"
-        let-back="back"
-        let-selectIndex="selectIndex"
-    > -->
-    <div>
-        <ng-template ngFor let-product [ngForOf]="products" [ngForTrackBy]="trackBy">
-            <app-card class="card" [product]="product"></app-card>
-        </ng-template>
-    </div>
+        let-activeIndex="activeIndex"
+        let-changeActiveItem="changeActiveItem"
+        [appPaginationOf]="products"
+        [appPaginationChunkSize]="4"
+    >
+        <div class="products-list__products">
+            <ng-template ngFor let-product [ngForOf]="productsGroup" [ngForTrackBy]="trackBy">
+                <app-card class="card" [product]="product"></app-card>
+            </ng-template>
+        </div>
 
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
+        <div class="pagination">
+            <button
+                type="button"
+                class="pagination__button"
+                (click)="changeActiveItem(activeIndex - 1)"
+            >
+                &lt;
+            </button>
+            <ng-template ngFor let-pageIndex [ngForOf]="pageIndexes">
+                <button
+                    type="button"
+                    class="pagination__button"
+                    [class.pagination__button_active]="pageIndex === activeIndex"
+                    (click)="changeActiveItem(pageIndex)"
+                >
+                    {{ pageIndex + 1 }}
+                </button>
+            </ng-template>
+            <button
+                type="button"
+                class="pagination__button"
+                (click)="changeActiveItem(activeIndex + 1)"
+            >
+                &gt;
+            </button>
+        </div>
+    </ng-template>
+</ng-template> -->
 
-    <!-- </ng-template> -->
-</ng-template>
+<ng-container *ngIf="products(); else loader; let products">
+    <ng-container
+        *appPagination="
+            let productsGroup of products;
+            chunkSize: 4;
+            let pageIndexes = pageIndexes;
+            let activeIndex = activeIndex;
+            let changeActiveItem = changeActiveItem;
+            let back = back;
+            let next = next
+        "
+    >
+        <div class="products-list__products">
+            <app-card
+                *ngFor="let product of productsGroup; trackBy: trackBy"
+                class="card"
+                [product]="product"
+            ></app-card>
+        </div>
+
+        <div class="pagination">
+            <button type="button" class="pagination__button" (click)="back()">&lt;</button>
+            <button
+                *ngFor="let pageIndex of pageIndexes"
+                type="button"
+                class="pagination__button"
+                [class.pagination__button_active]="pageIndex === activeIndex"
+                (click)="changeActiveItem(pageIndex)"
+            >
+                {{ pageIndex + 1 }}
+            </button>
+            <button type="button" class="pagination__button" (click)="next()">&gt;</button>
+        </div>
+    </ng-container>
+</ng-container>
 
 <ng-template #loader>Loader</ng-template>
