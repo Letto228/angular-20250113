@@ -50,7 +50,9 @@
             chunkSize: 4;
             let pageIndexes = pageIndexes;
             let activeIndex = activeIndex;
-            let changeActiveItem = changeActiveItem
+            let changeActiveItem = changeActiveItem;
+            let back = back;
+            let next = next
         "
     >
         <div class="products-list__products">
@@ -62,13 +64,7 @@
         </div>
 
         <div class="pagination">
-            <button
-                type="button"
-                class="pagination__button"
-                (click)="changeActiveItem(activeIndex - 1)"
-            >
-                &lt;
-            </button>
+            <button type="button" class="pagination__button" (click)="back()">&lt;</button>
             <button
                 *ngFor="let pageIndex of pageIndexes"
                 type="button"
@@ -78,13 +74,7 @@
             >
                 {{ pageIndex + 1 }}
             </button>
-            <button
-                type="button"
-                class="pagination__button"
-                (click)="changeActiveItem(activeIndex + 1)"
-            >
-                &gt;
-            </button>
+            <button type="button" class="pagination__button" (click)="next()">&gt;</button>
         </div>
     </ng-container>
 </ng-container>

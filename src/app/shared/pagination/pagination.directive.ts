@@ -15,11 +15,11 @@ import {PaginationContext} from './pagination-context';
     standalone: true,
 })
 export class PaginationDirective<T> {
-    private readonly vcRef = inject(ViewContainerRef);
+    private readonly viewContainerRef = inject(ViewContainerRef);
     private readonly templateRef = inject<TemplateRef<PaginationContext<T>>>(TemplateRef);
 
     readonly appPaginationOf = input.required<T[]>();
-    readonly appPaginationChunkSize = input.required<number>();
+    readonly appPaginationChunkSize = input<number>(4);
     readonly activeIndex = signal(0);
     readonly groupsCount = computed(() => {
         const itemsLength = this.appPaginationOf().length;
@@ -28,41 +28,50 @@ export class PaginationDirective<T> {
         return Math.ceil(itemsLength / chunkSize);
     });
 
+    readonly pageIndexes = computed(() => {
+        return Array.from({length: this.groupsCount()}, (_, i) => i++);
+    });
+
     constructor() {
         this.listenPaginationState();
     }
 
     private listenPaginationState() {
         effect(() => {
-            this.vcRef.clear();
+            this.viewContainerRef.clear();
 
             const allItems = this.appPaginationOf();
-            const groupsCount = this.groupsCount();
             const chunkSize = this.appPaginationChunkSize();
             const activeIndex = this.activeIndex();
-            const pageIndexes = Array.from({length: groupsCount}, (_, i) => i++);
-            const currentItems = allItems.filter((_, index) => {
-                return index >= chunkSize * activeIndex && index < chunkSize * (activeIndex + 1);
-            });
+            const filteredItems = allItems.slice(
+                chunkSize * activeIndex,
+                chunkSize * (activeIndex + 1),
+            );
 
-            this.vcRef.createEmbeddedView(this.templateRef, {
-                $implicit: currentItems,
-                pageIndexes,
+            this.viewContainerRef.createEmbeddedView(this.templateRef, {
+                $implicit: filteredItems,
+                pageIndexes: this.pageIndexes(),
                 activeIndex,
                 changeActiveItem: this.changeActiveItem.bind(this),
+                next: this.next.bind(this),
+                back: this.back.bind(this),
             });
         });
     }
 
     private changeActiveItem(index: number) {
-        const groupsCount = this.groupsCount();
+        this.activeIndex.set(index);
+    }
 
-        if (index < 0) {
-            this.activeIndex.set(groupsCount - 1);
-        } else if (index >= groupsCount) {
-            this.activeIndex.set(0);
-        } else {
-            this.activeIndex.set(index);
-        }
+    private back() {
+        const newIndex = this.activeIndex() > 0 ? this.activeIndex() - 1 : this.groupsCount() - 1;
+
+        this.changeActiveItem(newIndex);
+    }
+
+    private next() {
+        const newIndex = this.activeIndex() + 1 >= this.groupsCount() ? 0 : this.activeIndex() + 1;
+
+        this.changeActiveItem(newIndex);
     }
 }

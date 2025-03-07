@@ -3,4 +3,6 @@ export interface PaginationContext<TValue> {
     pageIndexes: number[];
     activeIndex: number;
     changeActiveItem: (index: number) => void;
+    back: () => void;
+    next: () => void;
 }
